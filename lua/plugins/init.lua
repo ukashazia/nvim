@@ -13,50 +13,49 @@ return {
     end,
   },
 
-   {
-   	"nvim-treesitter/nvim-treesitter",
-   	opts = {
-   		ensure_installed = {
-   			"vim", "lua", "vimdoc",
-        "html", "css", "elixir",
-        "heex", "javascript"
-   		},
-   	},
-   },
-   "nvim-lua/plenary.nvim",
+  {
+    "nvim-treesitter/nvim-treesitter",
+    opts = require "configs.treesitter",
+  },
 
-   {
-     "nvchad/ui",
-      config = function()
-        require "nvchad"
-      end
-   },
+  "nvim-lua/plenary.nvim",
 
-   {
-      "nvchad/base46",
-      lazy = true,
-      build = function()
-        require("base46").load_all_highlights()
-      end,
-   },
+  {
+    "nvchad/ui",
+    config = function()
+      require "nvchad"
+    end,
+  },
 
-   "nvchad/volt", -- optional, needed for theme switcher
-     {
+  {
+    "nvchad/base46",
+    lazy = true,
+    build = function()
+      require("base46").load_all_highlights()
+    end,
+  },
+
+  "nvchad/volt", -- optional, needed for theme switcher
+
+  {
     "Pocco81/auto-save.nvim",
     config = function()
       require("auto-save").setup {
         enabled = true,
-        events = {"FocusLost"},
+        events = { "FocusLost" },
         condition = function(buf)
           return vim.fn.getbufvar(buf, "&modifiable") == 1
         end,
       }
     end,
-   },
-   {
+  },
+  {
     "karb94/neoscroll.nvim",
-    config = function ()
-      require('neoscroll').setup({})
-    end
+    config = function()
+      require("neoscroll").setup {}
+    end,
+  },
+  {
+    "mbbill/undotree",
   }
 }
