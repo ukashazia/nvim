@@ -1,9 +1,16 @@
+_G.nvim = vim
+
 vim.g.base46_cache = vim.fn.stdpath "data" .. "/base46/"
 vim.g.mapleader = " "
 vim.opt.number = true
 vim.opt.relativenumber = true
 vim.opt.clipboard = "unnamedplus"
 vim.opt.scrolloff = 8
+
+vim.opt.swapfile = false
+vim.opt.backup = false
+vim.opt.undodir = os.getenv("HOME") .. "/.vim/undodir"
+vim.opt.undofile = true
 
 -- bootstrap lazy and all plugins
 local lazypath = vim.fn.stdpath "data" .. "/lazy/lazy.nvim"
@@ -75,11 +82,44 @@ require("neoscroll").setup {
 }
 
 require("conform").setup {}
+require("auto-save").setup {
+  enabled = true,
+  events = { "InsertLeave", "TextChanged" },
+  conditions = {
+    exists = true,
+    filetype_is_not = {},
+    modifiable = true,
+  },
+}
+
+local undotree = require "undotree"
+
+undotree.setup {
+  float_diff = true, -- using float window previews diff, set this `true` will disable layout option
+  layout = "left_bottom", -- "left_bottom", "left_left_bottom"
+  position = "right", -- "right", "bottom"
+  ignore_filetype = { "undotree", "undotreeDiff", "qf", "TelescopePrompt", "spectre_panel", "tsplayground" },
+  window = {
+    winblend = 10,
+  },
+  keymaps = {
+    ["j"] = "move_next",
+    ["k"] = "move_prev",
+    ["gj"] = "move2parent",
+    ["J"] = "move_change_next",
+    ["K"] = "move_change_prev",
+    ["<cr>"] = "action_enter",
+    ["p"] = "enter_diffbuf",
+    ["q"] = "quit",
+  },
+}
 
 local conf = require("telescope.config").values
 require("telescope.builtin").live_grep {
   vimgrep_arguments = table.insert(conf.vimgrep_arguments, "--fixed-strings"),
 }
+
+require("harpoon").setup {}
 -- load theme
 dofile(vim.g.base46_cache .. "defaults")
 dofile(vim.g.base46_cache .. "statusline")

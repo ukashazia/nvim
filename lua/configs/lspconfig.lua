@@ -12,8 +12,9 @@ local servers = {
   "dockerls",
   "pyright",
   "lua_ls",
-  "typescript",
-  "javascript",
+  "ts_ls",
+  "jsonls",
+  "java_language_server"
 }
 
 local nvlsp = require "nvchad.configs.lspconfig"

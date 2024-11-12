@@ -56,6 +56,30 @@ return {
     end,
   },
   {
-    "mbbill/undotree",
-  }
+    "jiaoshijie/undotree",
+    dependencies = "nvim-lua/plenary.nvim",
+    config = true,
+    keys = { -- load the plugin only when using it's keybinding:
+      { "<leader>u", "<cmd>lua require('undotree').toggle()<cr>" },
+    },
+  },
+  {
+    "ThePrimeagen/harpoon",
+    branch = "harpoon2",
+    dependencies = { "nvim-lua/plenary.nvim" },
+  },
+
+  "ThePrimeagen/vim-be-good",
+
+  {
+    "github/copilot.vim",
+    lazy = false,
+    config = function() -- Mapping tab is already used by NvChad
+      vim.g.copilot_no_tab_map = false
+      vim.g.copilot_assume_mapped = false 
+      vim.g.copilot_tab_fallback = ""
+      -- The mapping is set to other key, see custom/lua/mappings
+      -- or run <leader>ch to see copilot mapping section
+    end,
+  },
 }
