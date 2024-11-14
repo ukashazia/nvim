@@ -1,12 +1,17 @@
-require("lua.configs.lazy")
+-- must be required before any other plugins
 require "options"
+require "configs.lazy"
 
-local conf = require("telescope.config").values
-require("telescope.builtin").live_grep {
-  vimgrep_arguments = table.insert(conf.vimgrep_arguments, "--fixed-strings"),
-}
+-- put this after lazy setup
+for _, v in ipairs(vim.fn.readdir(vim.g.base46_cache)) do
+  dofile(vim.g.base46_cache .. v)
+end
 
-vim.schedule(function()
-  require "mappings"
-end)
+-- local conf = require("telescope.config").values
+-- require("telescope.builtin").live_grep {
+--   vimgrep_arguments = table.insert(conf.vimgrep_arguments, "--fixed-strings"),
+-- }
 
+require "mappings"
+-- vim.schedule(function()
+-- end)

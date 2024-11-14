@@ -14,9 +14,9 @@ local M = {
   },
   ui = {
     cmp = {
-      icons_left = false, -- only for non-atom styles!
+      icons_left = true, -- only for non-atom styles!
       lspkind_text = true,
-      style = "default", -- default/flat_light/flat_dark/atom/atom_colored
+      style = "default",  -- default/flat_light/flat_dark/atom/atom_colored
       format_colors = {
         tailwind = false, -- will work for css lsp too
         icon = "󱓻",
@@ -37,7 +37,7 @@ local M = {
 
     -- lazyload it when there are 1+ buffers
     tabufline = {
-      enabled = true,
+      enabled = false,
       lazyload = true,
       order = { "treeOffset", "buffers", "tabs", "btns" },
       modules = nil,
@@ -45,20 +45,20 @@ local M = {
   },
 
   nvdash = {
-    load_on_startup = true,
+    load_on_startup = false,
     header = {
       "                            ",
-      "     ▄▄         ▄ ▄▄▄▄▄▄▄   ",
-      "   ▄▀███▄     ▄██ █████▀    ",
-      "   ██▄▀███▄   ███           ",
-      "   ███  ▀███▄ ███           ",
-      "   ███    ▀██ ███           ",
-      "   ███      ▀ ███           ",
-      "   ▀██ █████▄▀█▀▄██████▄    ",
-      "     ▀ ▀▀▀▀▀▀▀ ▀▀▀▀▀▀▀▀▀▀   ",
-      "                            ",
-      "     Powered By  eovim    ",
-      "                            ",
+      -- "     ▄▄         ▄ ▄▄▄▄▄▄▄   ",
+      -- "   ▄▀███▄     ▄██ █████▀    ",
+      -- "   ██▄▀███▄   ███           ",
+      -- "   ███  ▀███▄ ███           ",
+      -- "   ███    ▀██ ███           ",
+      -- "   ███      ▀ ███           ",
+      -- "   ▀██ █████▄▀█▀▄██████▄    ",
+      -- "     ▀ ▀▀▀▀▀▀▀ ▀▀▀▀▀▀▀▀▀▀   ",
+      -- "                            ",
+      -- "     Powered By  eovim    ",
+      -- "                            ",
     },
 
     buttons = {
@@ -100,7 +100,7 @@ local M = {
   lsp = { signature = true },
 
   cheatsheet = {
-    theme = "grid", -- simple/grid
+    theme = "grid",                                                     -- simple/grid
     excluded_groups = { "terminal (t)", "autopairs", "Nvim", "Opens" }, -- can add group name or with mode
   },
 
