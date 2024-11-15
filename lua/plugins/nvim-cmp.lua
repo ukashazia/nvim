@@ -1,135 +1,176 @@
 dofile(vim.g.base46_cache .. 'cmp')
 
-return {
-  'hrsh7th/nvim-cmp',
-  event = 'InsertEnter',
-  dependencies = {
-    {
-      -- snippet plugin
-      'L3MON4D3/LuaSnip',
-      dependencies = 'rafamadriz/friendly-snippets',
-      opts = { history = true, updateevents = 'TextChanged,TextChangedI' },
-      config = function(_, opts)
-        require('luasnip').config.set_config(opts)
-        -- vscode format
-        require('luasnip.loaders.from_vscode').lazy_load { exclude = vim.g.vscode_snippets_exclude or {} }
-        require('luasnip.loaders.from_vscode').lazy_load { paths = vim.g.vscode_snippets_path or '' }
+---@diagnostic disable: undefined-field
 
-        -- snipmate format
-        require('luasnip.loaders.from_snipmate').load()
-        require('luasnip.loaders.from_snipmate').lazy_load { paths = vim.g.snipmate_snippets_path or '' }
+local source_mapping = {
+  nvim_lsp = "[LSP]",
+  nvim_lua = "[LUA]",
+  luasnip = "[SNIP]",
+  buffer = "[BUF]",
+  path = "[PATH]",
+  treesitter = "[TREE]",
+  ["vim-dadbod-completion"] = "[DB]",
+  dap = "[DAP]",
+}
 
-        -- lua format
-        require('luasnip.loaders.from_lua').load()
-        require('luasnip.loaders.from_lua').lazy_load { paths = vim.g.lua_snippets_path or '' }
+local config = function()
+  local cmp = require("cmp")
+  local lspkind = require("lspkind")
+  local cmp_autopairs = require("nvim-autopairs.completion.cmp")
+  local cmp_tailwind = require("tailwindcss-colorizer-cmp")
 
-        vim.api.nvim_create_autocmd('InsertLeave', {
-          callback = function()
-            if require('luasnip').session.current_nodes[vim.api.nvim_get_current_buf()] and not require('luasnip').session.jump_active then
-              require('luasnip').unlink_current()
-            end
-          end,
-        })
+  local autocomplete_group = vim.api.nvim_create_augroup("dadbod-autocomplete", { clear = true })
+  vim.api.nvim_create_autocmd("FileType", {
+    pattern = { "sql", "mysql", "plsql" },
+    callback = function()
+      cmp.setup.buffer({ sources = { { name = "vim-dadbod-completion" } } })
+    end,
+    group = autocomplete_group,
+  })
+
+  cmp.setup({
+    enabled = true,
+    preselect = cmp.PreselectMode.Item,
+    keyword_length = 2,
+    snippet = {
+      expand = function(args)
+        require("luasnip").lsp_expand(args.body)
       end,
     },
-
-    -- autopairing of (){}[] etc
-    {
-      'windwp/nvim-autopairs',
-      opts = {
-        fast_wrap = {},
-        disable_filetype = { 'TelescopePrompt', 'vim' },
+    window = {
+      completion = cmp.config.window.bordered(),
+      documentation = cmp.config.window.bordered(),
+    },
+    view = {
+      entries = {
+        name = "custom",
+        selection_order = "near_cursor",
+        follow_cursor = true,
       },
-      config = function(_, opts)
-        require('nvim-autopairs').setup(opts)
-
-        -- setup cmp for autopairs
-        local cmp_autopairs = require 'nvim-autopairs.completion.cmp'
-        require('cmp').event:on('confirm_done', cmp_autopairs.on_confirm_done())
-      end,
     },
-    -- cmp sources plugins
-    {
-      'saadparwaiz1/cmp_luasnip',
-      'hrsh7th/cmp-nvim-lua',
-      'hrsh7th/cmp-nvim-lsp',
-      'hrsh7th/cmp-buffer',
-      'hrsh7th/cmp-path',
-      'hrsh7th/cmp-cmdline',
+    mapping = {
+      ["<C-l>"] = cmp.mapping(
+        cmp.mapping.confirm({
+          select = true,
+          behavior = cmp.ConfirmBehavior.Insert,
+        }),
+        { "i", "c" }
+      ),
+      ["<C-j>"] = cmp.mapping.select_next_item({
+        behavior = cmp.ConfirmBehavior.Insert,
+      }),
+      ["<C-k>"] = cmp.mapping.select_prev_item({
+        behavior = cmp.ConfirmBehavior.Insert,
+      }),
+      ["<C-b>"] = cmp.mapping.scroll_docs(-5),
+      ["<C-f>"] = cmp.mapping.scroll_docs(5),
+      ["<C-h>"] = cmp.mapping.abort(),
     },
-  },
-  opts = function()
-    local cmp = require 'cmp'
-    local cmp_ui = require('nvconfig').ui.cmp
-    local cmp_style = cmp_ui.style
-
-    local atom_styled = cmp_style == 'atom' or cmp_style == 'atom_colored'
-    local options = {
-      completion = { completeopt = 'menu,menuone' },
-
-      snippet = {
-        expand = function(args)
-          require('luasnip').lsp_expand(args.body)
+    sources = cmp.config.sources({
+      {
+        name = "luasnip",
+        group_index = 1,
+        option = { use_show_condition = true },
+        entry_filter = function()
+          local context = require("cmp.config.context")
+          return not context.in_treesitter_capture("string")
+              and not context.in_syntax_group("String")
         end,
       },
-
-      mapping = {
-        ['<C-p>'] = cmp.mapping.select_prev_item(),
-        ['<C-n>'] = cmp.mapping.select_next_item(),
-        ['<C-d>'] = cmp.mapping.scroll_docs(-4),
-        ['<C-f>'] = cmp.mapping.scroll_docs(4),
-        ['<C-Space>'] = cmp.mapping.complete(),
-        ['<C-e>'] = cmp.mapping.close(),
-
-        ['<CR>'] = cmp.mapping.confirm {
-          behavior = cmp.ConfirmBehavior.Insert,
-          select = true,
-        },
-
-        ['<Tab>'] = cmp.mapping(function(fallback)
-          if cmp.visible() then
-            cmp.select_next_item()
-          elseif require('luasnip').expand_or_jumpable() then
-            require('luasnip').expand_or_jump()
-          else
-            fallback()
-          end
-        end, { 'i', 's' }),
-
-        ['<S-Tab>'] = cmp.mapping(function(fallback)
-          if cmp.visible() then
-            cmp.select_prev_item()
-          elseif require('luasnip').jumpable(-1) then
-            require('luasnip').jump(-1)
-          else
-            fallback()
-          end
-        end, { 'i', 's' }),
+      {
+        name = "nvim_lsp",
+        group_index = 2,
       },
-
-      sources = {
-        { name = 'nvim_lsp' },
-        { name = 'luasnip' },
-        { name = 'buffer' },
-        { name = 'nvim_lua' },
-        { name = 'path' },
-        { name = 'cmdline' },
+      {
+        name = "nvim_lua",
+        group_index = 3,
       },
-      window = {
-        completion = {
-          scrollbar = false,
-          side_padding = atom_styled and 0 or 1,
-          winhighlight = 'Normal:CmpPmenu,CursorLine:CmpSel,Search:None,FloatBorder:CmpBorder',
-          border = atom_styled and 'none' or 'single',
-        },
-
-        documentation = {
-          border = 'single',
-          winhighlight = 'Normal:CmpDoc,FloatBorder:CmpDocBorder',
+      {
+        name = "treesitter",
+        keyword_length = 4,
+        group_index = 4,
+      },
+      {
+        name = "path",
+        keyword_length = 4,
+        group_index = 4,
+      },
+      {
+        name = "buffer",
+        keyword_length = 3,
+        group_index = 5,
+        option = {
+          get_bufnrs = function()
+            local bufs = {}
+            for _, win in ipairs(vim.api.nvim_list_wins()) do
+              bufs[vim.api.nvim_win_get_buf(win)] = true
+            end
+            return vim.tbl_keys(bufs)
+          end,
         },
       },
-    }
+      {
+        name = "lazydev",
+        keyword_length = 2,
+        group_index = 0,
+      },
+    }),
+    ---@diagnostic disable-next-line: missing-fields
+    formatting = {
+      format = lspkind.cmp_format({
+        mode = "symbol_text",
+        ellipsis_char = "...",
+        before = function(entry, vim_item)
+          cmp_tailwind.formatter(entry, vim_item)
+          return vim_item
+        end,
+        menu = source_mapping,
+      }),
+    },
+    sorting = {
+      priority_weight = 2,
+      comparators = {
+        cmp.config.compare.offset,
+        cmp.config.compare.exact,
+        cmp.config.compare.score,
+        cmp.config.compare.recently_used,
+        cmp.config.compare.kind,
+        cmp.config.compare.sort_text,
+        cmp.config.compare.length,
+        cmp.config.compare.order,
+      },
+    },
+  })
+  cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done())
 
-    return vim.tbl_deep_extend('force', options, require 'cmp')
-  end,
+  cmp.setup.filetype({ "dap-repl", "dapui_watches", "dapui_hover" }, {
+    sources = {
+      { name = "dap" },
+    },
+  })
+end
+
+return {
+  "iguanacucumber/magazine.nvim",
+  name = "nvim-cmp", -- Otherwise highlighting gets messed up
+  config = config,
+  event = "InsertEnter",
+  dependencies = {
+    "hrsh7th/cmp-nvim-lsp",
+    dependencies = {
+      'windwp/nvim-autopairs',
+      "L3MON4D3/LuaSnip",
+      "hrsh7th/cmp-buffer",
+      "hrsh7th/cmp-path",
+      "hrsh7th/cmp-nvim-lua",
+      "ray-x/cmp-treesitter",
+      "saadparwaiz1/cmp_luasnip",
+      "roobert/tailwindcss-colorizer-cmp.nvim",
+      "onsails/lspkind-nvim",
+      {
+        "rcarriga/cmp-dap",
+        dependencies = "mfussenegger/nvim-dap",
+      },
+    },
+  },
 }

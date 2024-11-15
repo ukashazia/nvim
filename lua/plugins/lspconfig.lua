@@ -2,6 +2,7 @@ local function lsp_setup()
   local lspconfig = require 'lspconfig'
   -- List of LSP servers
   local servers = {
+    'lexical',
     'html',
     'cssls',
     'docker_compose_language_service',
@@ -23,11 +24,13 @@ local function lsp_setup()
   -- Function to set up LSP servers
 
   -- Iterate and set up each LSP server
+  local nvlsp = require 'configs.nvlsp'
+
   for _, server in ipairs(servers) do
     lspconfig[server].setup {
-      -- on_attach = nvlsp.on_attach,
-      -- on_init = nvlsp.on_init,
-      -- capabilities = nvlsp.capabilities,
+      on_attach = nvlsp.on_attach,
+      on_init = nvlsp.on_init,
+      capabilities = nvlsp.capabilities,
     }
   end
 
@@ -41,13 +44,41 @@ local function lsp_setup()
       },
     },
   }
+  lspconfig.tailwindcss.setup {
+    filetypes = {
+      'html',
+      'elixir',
+      'eelixir',
+      'heex',
+      'javascript',
+      'typescript',
+      'javascriptreact',
+      'typescriptreact',
+      'svelte',
+      'vue',
+      'css',
+      'scss',
+      'less',
+    },
+    init_options = {
+      userLanguages = {
+        elixir = 'html-eex',
+        eelixir = 'html-eex',
+        heex = 'html-eex',
+      },
+    },
+  }
+  require('lspconfig').lexical.setup {
+    cmd = { 'lexical' }, -- or whatever the correct executable is for your lexical LSP
+    -- capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities()),
+  }
 end
 
 -- Plugin setup for nvim-lspconfig
 return {
   'neovim/nvim-lspconfig',
   lazy = false, -- Load immediately
-  config = function() 
+  config = function()
     lsp_setup()
   end, -- Pass the function reference without parenthesese
 }

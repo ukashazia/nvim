@@ -1,24 +1,24 @@
 return {
-  "stevearc/conform.nvim",
-  -- event = "BufWritePre", -- uncomment for format on save
+  'stevearc/conform.nvim',
   lazy = false,
+  config = function()
+    require("conform").formatters.mix = {
+      inherit = false,
+      command = "mix",
+      args = { "format", vim.api.nvim_buf_get_name(0) },
+    }
+  end,
   opts = {
+    timeout = 10000,
+    async = true,
     formatters_by_ft = {
       elixir = { "mix" },
       heex = { "mix" },
       eelixir = { "mix" },
-      lua = { "prettier", "stylua" },
-      -- Conform will run multiple formatters sequentially
+      lua = { "stylua" },
       python = { "isort", "black" },
-      -- You can customize some of the format options for the filetype (:help conform.format)
       rust = { "rustfmt", lsp_format = "fallback" },
-      -- Conform will run the first available formatter
       javascript = { "prettierd", "prettier", stop_after_first = true },
     },
-    -- format_on_save = {
-    --
-    --   timeout_ms = 500,
-    --   lsp_format = "fallback",
-    -- },
   },
 }

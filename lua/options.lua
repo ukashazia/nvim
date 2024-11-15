@@ -11,7 +11,6 @@ opt.spelllang = { "en_us" }
 vim.g.mapleader = " "
 opt.number = true
 opt.relativenumber = true
-opt.clipboard = "unnamedplus"
 opt.scrolloff = 8
 
 opt.swapfile = false
@@ -43,7 +42,7 @@ o.softtabstop = 2
 o.laststatus = 3
 o.showmode = false
 
-o.clipboard = "unnamedplus"
+-- o.clipboard = "unnamedplus"
 o.cursorline = true
 o.cursorlineopt = "number"
 
@@ -65,3 +64,6 @@ o.undofile = true
 o.updatetime = 250
 
 opt.termguicolors = true
+
+o.sessionoptions="blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"
+

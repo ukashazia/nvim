@@ -28,6 +28,13 @@ map({ 'n', 'v' }, 'E', '$', { desc = 'Move to end of line' })
 map({ 'n', 'v' }, '<leader>th', '<leader>h', { desc = 'Horizontal terminal' })
 map({ 'n', 'v' }, '<leader>tv', '<leader>v', { desc = 'Vertical terminal' })
 map({ 'n', 'v' }, '<leader>tt', ':Telescope<CR>', { desc = 'Open Telescope' })
+map({ 'n', 'v' }, '<leader>dd', 'vim.lsp.buf.hover()', { desc = 'Open documemtation' })
+map({ 'n' }, '<leader>bc', ':let @+ = expand("%")<cr>', { desc = 'Copy buffer path (relative)' })
+map({ 'n' }, '<leader>bca', ':let @+ = expand("%:p")<cr>', { desc = 'Copy buffer path (absolute)' })
+map({ "v", "n" }, "ps", '"+p', { desc = 'Paste from system clipboard' })
+map({ "v" }, "ys", '"+y', { desc = 'Copy to system clipboard' })
+map({ "v", "n" }, "<leader>yb", ':%y<CR>', { desc = 'Copy whole buffer' })
+map({ "v", "n" }, "<leader>ybs", ':%y+<CR>', { desc = "Copy whole buffer into system's clipboard" })
 
 -- select and move multiple lines up & down
 map('n', '<leader>uo', require('undotree').open, { noremap = true, silent = true })
@@ -91,7 +98,11 @@ map('n', '<leader>th', function()
 end, { desc = 'telescope nvchad themes' })
 
 map('n', '<leader>ff', '<cmd>Telescope find_files<cr>', { desc = 'telescope find files' })
-map('n', '<leader>fa', '<cmd>Telescope find_files follow=true no_ignore=true hidden=true<CR>', { desc = 'telescope find all files' })
+map('n', '<leader>fa', '<cmd>Telescope find_files follow=true no_ignore=true hidden=true<CR>',
+  { desc = 'telescope find all files' })
+map("n", "<leader>tb", ":Telescope file_browser<CR>")
+map("n", "<leader>tc", ":Telescope neoclip<CR>", { desc = "Telescope Clipboard" })
+map({ "n", "v" }, "<leader>tm", ":Telescope macroscope<CR>", { desc = "Telescope Macros" })
 
 -- Search with Telescope
 function vim.getVisualSelection()
@@ -111,17 +122,18 @@ local keymap = vim.keymap.set
 local tb = require 'telescope.builtin'
 local opts = { noremap = true, silent = true }
 
-keymap('n', '<space>g', ':Telescope current_buffer_fuzzy_find<cr>', opts)
-keymap('v', '<space>g', function()
+keymap('n', '<leader>g', ':Telescope current_buffer_fuzzy_find<cr>', opts)
+keymap('v', '<leader>g', function()
   local text = vim.getVisualSelection()
   tb.current_buffer_fuzzy_find { default_text = text }
 end, opts)
 
-keymap('n', '<space>G', ':Telescope live_grep<cr>', opts)
-keymap('v', '<space>G', function()
+keymap('n', '<leader>G', ':Telescope live_grep<cr>', opts)
+keymap('v', '<leader>G', function()
   local text = vim.getVisualSelection()
   tb.live_grep { default_text = text }
 end, opts)
+-- Search with Telescope end
 
 -- Comment
 map('n', '<leader>/', 'gcc', { desc = 'toggle comment', remap = true })
