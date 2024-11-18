@@ -35,6 +35,9 @@ map({ "v", "n" }, "ps", '"+p', { desc = 'Paste from system clipboard' })
 map({ "v" }, "ys", '"+y', { desc = 'Copy to system clipboard' })
 map({ "v", "n" }, "<leader>yb", ':%y<CR>', { desc = 'Copy whole buffer' })
 map({ "v", "n" }, "<leader>ybs", ':%y+<CR>', { desc = "Copy whole buffer into system's clipboard" })
+map("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>", { noremap = true, silent = true, desc = "Go to declaration" })
+map("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", { noremap = true, silent = true, desc = "Go to definition" })
+map("n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>", { noremap = true, silent = true, desc = "Go to usage" })
 
 -- select and move multiple lines up & down
 map('n', '<leader>uo', require('undotree').open, { noremap = true, silent = true })
@@ -97,8 +100,8 @@ map('n', '<leader>th', function()
   require('nvchad.themes').open()
 end, { desc = 'telescope nvchad themes' })
 
-map('n', '<leader>ff', '<cmd>Telescope find_files<cr>', { desc = 'telescope find files' })
-map('n', '<leader>fa', '<cmd>Telescope find_files follow=true no_ignore=true hidden=true<CR>',
+-- map('n', '<leader>ff', '<cmd>Telescope find_files<cr>', { desc = 'telescope find files' })
+map('n', '<leader>ff', '<cmd>Telescope find_files follow=true no_ignore=true hidden=true<CR>',
   { desc = 'telescope find all files' })
 map("n", "<leader>tb", ":Telescope file_browser<CR>")
 map("n", "<leader>tc", ":Telescope neoclip<CR>", { desc = "Telescope Clipboard" })

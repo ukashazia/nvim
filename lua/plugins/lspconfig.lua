@@ -1,29 +1,9 @@
+local lsp_configuration = require "configs.lsp"
+local servers = lsp_configuration.servers
+
 local function lsp_setup()
   local lspconfig = require 'lspconfig'
-  -- List of LSP servers
-  local servers = {
-    'lexical',
-    'html',
-    'cssls',
-    'docker_compose_language_service',
-    'dockerls',
-    'pyright',
-    'lua_ls',
-    'ts_ls', -- Use "tsserver" for TypeScript
-    'jsonls',
-    'jdtls', -- Java language server
-    'tailwindcss',
-    'clangd',
-    'yamlls',
-    'helm_ls',
-    'bashls',
-    'eslint',
-    'rust_analyzer',
-  }
 
-  -- Function to set up LSP servers
-
-  -- Iterate and set up each LSP server
   local nvlsp = require 'configs.nvlsp'
 
   for _, server in ipairs(servers) do
@@ -34,7 +14,6 @@ local function lsp_setup()
     }
   end
 
-  -- Additional settings for specific servers (e.g., Lua)
   lspconfig.lua_ls.setup {
     settings = {
       Lua = {
@@ -68,17 +47,89 @@ local function lsp_setup()
       },
     },
   }
-  require('lspconfig').lexical.setup {
-    cmd = { 'lexical' }, -- or whatever the correct executable is for your lexical LSP
-    -- capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities()),
+
+  lspconfig.lexical.setup {
+    lcmd = { 'lexical' }, }
+
+  lspconfig.sourcekit.setup {
+    cmd = {
+      "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/sourcekit-lsp",
+    },
+    capabilities = {
+      workspace = {
+        didChangeWatchedFiles = {
+          dynamicRegistration = true,
+        },
+      },
+    },
   }
 end
 
--- Plugin setup for nvim-lspconfig
+local function preinstall_lsps()
+  local is_headless = require "utils.core".is_headless()
+  if is_headless then
+    local mlsp = require("mason-lspconfig")
+    local mason_registry = require("mason-registry")
+    local lsp_servers_to_install = {}
+
+    -- Collect the servers that need to be installed
+    for _, server in ipairs(servers) do
+      server = mlsp.get_mappings().lspconfig_to_mason[server]
+      local pkg = mason_registry.get_package(server)
+      if not pkg:is_installed() then
+        table.insert(lsp_servers_to_install, pkg)
+      end
+    end
+
+    -- Install the servers and wait for them to finish
+    if #lsp_servers_to_install > 0 then
+      vim.notify("Installing LSP servers...")
+      local completed_count = 0
+
+      for _, pkg in ipairs(lsp_servers_to_install) do
+        vim.notify("Installing ")
+        -- vim.notify(pkg)
+        pkg:install():on("close", function()
+          completed_count = completed_count + 1
+          if completed_count == #lsp_servers_to_install then
+            vim.notify("LSP servers installation complete!")
+            vim.cmd("qa") -- Quit Neovim once all installations are done
+          end
+        end)
+      end
+    else
+      vim.notify("All LSP servers are already installed!")
+      vim.cmd("qa") -- Quit immediately if nothing to install
+    end
+  end
+end
+
 return {
-  'neovim/nvim-lspconfig',
-  lazy = false, -- Load immediately
-  config = function()
-    lsp_setup()
-  end, -- Pass the function reference without parenthesese
+  {
+    lazy = false,
+    dir = "~/.config/nvim/plugins/mason-lspconfig.nvim",
+    config = function()
+      require('mason-lspconfig').setup {
+        ensure_installed = servers,
+        automatic_installation = true,
+        allow_headless = true,
+      }
+      preinstall_lsps()
+    end,
+    dependencies = {
+      "williamboman/mason.nvim",
+      'neovim/nvim-lspconfig',
+    },
+  },
+
+  {
+    'neovim/nvim-lspconfig',
+    lazy = false,
+    config = function()
+      lsp_setup()
+    end,
+    dependencies = {
+      "williamboman/mason.nvim",
+    }
+  },
 }
