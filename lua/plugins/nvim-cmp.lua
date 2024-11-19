@@ -151,8 +151,8 @@ local config = function()
 end
 
 return {
-  "iguanacucumber/magazine.nvim",
-  name = "nvim-cmp", -- Otherwise highlighting gets messed up
+  "hrsh7th/nvim-cmp",
+  -- name = "nvim-cmp", -- Otherwise highlighting gets messed up
   config = config,
   event = "InsertEnter",
   dependencies = {

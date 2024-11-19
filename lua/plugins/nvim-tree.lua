@@ -13,6 +13,9 @@ return {
         group_empty = true,
       },
       filters = {
+        enable = true,
+        git_ignored = false,
+        custom = {},
         dotfiles = false,
       },
     }

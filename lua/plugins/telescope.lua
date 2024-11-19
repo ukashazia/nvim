@@ -1,8 +1,9 @@
 local ignored_glob_patterns = {
-  "--glob=!**/.git/*",
+  "--glob=!**/.git/**",
+  "--glob=!**/.elixir-tools/**",
   "--glob=!**/.idea/*",
   "--glob=!**/.vscode/*",
-  "--glob=!**/build/*",
+  "--glob=!**/*build/*",
   "--glob=!**/dist/*",
   "--glob=!**/node_modules/*",
   "--glob=!**/*.lock*",
@@ -27,6 +28,7 @@ return {
           -- "--column",
           "--smart-case",
           "--hidden",
+          "--unrestricted",
         },
         defaults = {
           prompt_prefix = '   ',
@@ -50,17 +52,26 @@ return {
             "--line-number",   -- Show line numbers
             "--column",        -- Show column numbers
             "--smart-case",    -- Smart case search
+            "--unrestricted",  -- Search all files, including hidden and binary files
 
             -- Exclude some patterns from search
-            -- table.unpack(ignored_glob_patterns),
-            ignored_glob_patterns,
+            -- LSP errors are due to mismatched lua versions (nvim uses an embedded version of lua that is different from the system version)
+            unpack(ignored_glob_patterns),
           },
-          -- file_ignore_patterns = {
-          --   "node_modules", "build", "dist", ".lock"
-          -- },
-          -- mappings = {
-          --   n = { ['q'] = require('telescope.actions').close },
-          -- },
+        },
+        pickers = {
+          find_files = {
+            hidden = true,
+            -- needed to exclude some files & dirs from general search
+            -- when not included or specified in .gitignore
+            find_command = {
+              "rg",
+              "--files",
+              "--hidden",
+              -- LSP errors are due to mismatched lua versions (nvim uses an embedded version of lua that is different from the system version)
+              unpack(ignored_glob_patterns),
+            },
+          },
         },
         pickers = {
           find_files = {
@@ -79,6 +90,12 @@ return {
 
         extensions_list = { 'themes', 'terms', 'file_browser', "neoclip" },
         extensions = {
+          fzf = {
+            fuzzy = true,                   -- false will only do exact matching
+            override_generic_sorter = true, -- override the generic sorter
+            override_file_sorter = true,    -- override the file sorter
+            case_mode = "smart_case",       -- or "ignore_case" or "respect_case"
+          },
           file_browser = {
             theme = "ivy",
             -- disables netrw and use telescope-file-browser in its place
@@ -103,4 +120,9 @@ return {
     "nvim-telescope/telescope-file-browser.nvim",
     dependencies = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim" }
   },
+  {
+    'nvim-telescope/telescope-fzf-native.nvim',
+    build = 'make',
+    dependencies = { "nvim-telescope/telescope.nvim" }
+  }
 }

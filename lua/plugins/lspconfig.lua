@@ -49,7 +49,8 @@ local function lsp_setup()
   }
 
   lspconfig.lexical.setup {
-    lcmd = { 'lexical' }, }
+    cmd = { 'lexical' },
+  }
 
   lspconfig.sourcekit.setup {
     cmd = {
@@ -106,15 +107,16 @@ end
 
 return {
   {
+    "williamboman/mason-lspconfig.nvim",
     lazy = false,
-    dir = "~/.config/nvim/plugins/mason-lspconfig.nvim",
+    -- dir = "~/.config/nvim/plugins/mason-lspconfig.nvim",
     config = function()
       require('mason-lspconfig').setup {
         ensure_installed = servers,
         automatic_installation = true,
         allow_headless = true,
       }
-      preinstall_lsps()
+      -- preinstall_lsps()
     end,
     dependencies = {
       "williamboman/mason.nvim",

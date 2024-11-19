@@ -6,7 +6,7 @@ local api_map = vim.api.nvim_set_keymap
 -- force quit nvim
 map({ 'n', 'v' }, ':Fexit<cr>', ':qa!<cr>', { noremap = true, silent = true })
 
-map('n', ';', ':', { desc = 'cmd enter command mode' })
+map({ 'n', 'v' }, ';', ':', { desc = 'cmd enter command mode' })
 map('i', 'jk', '<ESC>')
 map({ 'v', 'i' }, 'Y', 'y$')
 map('v', 'J', ":m '>+1<CR>gv=gv")
