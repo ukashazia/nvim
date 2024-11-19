@@ -68,17 +68,53 @@ local function lsp_setup()
       },
     },
   }
-  require('lspconfig').lexical.setup {
-    cmd = { 'lexical' }, -- or whatever the correct executable is for your lexical LSP
-    -- capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities()),
+
+  lspconfig.lexical.setup {
+    cmd = { 'lexical' },
+  }
+
+  lspconfig.sourcekit.setup {
+    cmd = {
+      "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/sourcekit-lsp",
+    },
+    capabilities = {
+      workspace = {
+        didChangeWatchedFiles = {
+          dynamicRegistration = true,
+        },
+      },
+    },
   }
 end
 
 -- Plugin setup for nvim-lspconfig
 return {
-  'neovim/nvim-lspconfig',
-  lazy = false, -- Load immediately
-  config = function()
-    lsp_setup()
-  end, -- Pass the function reference without parenthesese
+  {
+    "williamboman/mason-lspconfig.nvim",
+    lazy = false,
+    -- dir = "~/.config/nvim/plugins/mason-lspconfig.nvim",
+    config = function()
+      require('mason-lspconfig').setup {
+        ensure_installed = servers,
+        automatic_installation = true,
+        allow_headless = true,
+      }
+      -- preinstall_lsps()
+    end,
+    dependencies = {
+      "williamboman/mason.nvim",
+      'neovim/nvim-lspconfig',
+    },
+  },
+
+  {
+    'neovim/nvim-lspconfig',
+    lazy = false,
+    config = function()
+      lsp_setup()
+    end,
+    dependencies = {
+      "williamboman/mason.nvim",
+    }
+  },
 }

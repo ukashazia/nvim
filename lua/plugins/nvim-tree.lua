@@ -13,7 +13,10 @@ return {
         group_empty = true,
       },
       filters = {
-        dotfiles = true,
+        enable = true,
+        git_ignored = false,
+        custom = {},
+        dotfiles = false,
       },
     }
   end,

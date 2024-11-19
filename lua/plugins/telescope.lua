@@ -1,3 +1,16 @@
+local ignored_glob_patterns = {
+  "--glob=!**/.git/**",
+  "--glob=!**/.elixir-tools/**",
+  "--glob=!**/.idea/*",
+  "--glob=!**/.vscode/*",
+  "--glob=!**/*build/*",
+  "--glob=!**/dist/*",
+  "--glob=!**/node_modules/*",
+  "--glob=!**/*.lock*",
+  "--glob=!**/lexical*",
+  "--glob=!*elixir_ls*",
+}
+
 return {
   {
     'nvim-telescope/telescope.nvim',
@@ -6,6 +19,17 @@ return {
     dependencies = { 'nvim-lua/plenary.nvim' },
     config = function()
       require('telescope').setup {
+        vimgrep_arguments = {
+          "rg",
+          "--color=never",
+          "--no-heading",
+          "--with-filename",
+          "--line-number",
+          -- "--column",
+          "--smart-case",
+          "--hidden",
+          "--unrestricted",
+        },
         defaults = {
           prompt_prefix = '   ',
           selection_caret = ' ',
@@ -19,13 +43,45 @@ return {
             width = 0.87,
             height = 0.80,
           },
-          -- mappings = {
-          --   n = { ['q'] = require('telescope.actions').close },
-          -- },
+          vimgrep_arguments = {
+            "rg",
+            "--follow",        -- Follow symbolic links
+            "--hidden",        -- Search for hidden files
+            "--no-heading",    -- Don't group matches by each file
+            "--with-filename", -- Print the file path with the matched lines
+            "--line-number",   -- Show line numbers
+            "--column",        -- Show column numbers
+            "--smart-case",    -- Smart case search
+            "--unrestricted",  -- Search all files, including hidden and binary files
+
+            -- Exclude some patterns from search
+            -- LSP errors are due to mismatched lua versions (nvim uses an embedded version of lua that is different from the system version)
+            unpack(ignored_glob_patterns),
+          },
+        },
+        pickers = {
+          find_files = {
+            hidden = true,
+            -- needed to exclude some files & dirs from general search
+            -- when not included or specified in .gitignore
+            find_command = {
+              "rg",
+              "--files",
+              "--hidden",
+              -- LSP errors are due to mismatched lua versions (nvim uses an embedded version of lua that is different from the system version)
+              unpack(ignored_glob_patterns),
+            },
+          },
         },
 
         extensions_list = { 'themes', 'terms', 'file_browser', "neoclip" },
         extensions = {
+          fzf = {
+            fuzzy = true,                   -- false will only do exact matching
+            override_generic_sorter = true, -- override the generic sorter
+            override_file_sorter = true,    -- override the file sorter
+            case_mode = "smart_case",       -- or "ignore_case" or "respect_case"
+          },
           file_browser = {
             theme = "ivy",
             -- disables netrw and use telescope-file-browser in its place
@@ -50,4 +106,9 @@ return {
     "nvim-telescope/telescope-file-browser.nvim",
     dependencies = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim" }
   },
+  {
+    'nvim-telescope/telescope-fzf-native.nvim',
+    build = 'make',
+    dependencies = { "nvim-telescope/telescope.nvim" }
+  }
 }
