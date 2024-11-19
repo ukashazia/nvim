@@ -73,6 +73,20 @@ return {
             },
           },
         },
+        pickers = {
+          find_files = {
+            hidden = true,
+            -- needed to exclude some files & dirs from general search
+            -- when not included or specified in .gitignore
+            find_command = {
+              "rg",
+              "--files",
+              "--hidden",
+              -- table.unpack(ignored_glob_patterns),
+              ignored_glob_patterns,
+            },
+          },
+        },
 
         extensions_list = { 'themes', 'terms', 'file_browser', "neoclip" },
         extensions = {
