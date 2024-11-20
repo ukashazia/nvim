@@ -15,15 +15,21 @@ local function lsp_setup()
   end
 
   lspconfig.lua_ls.setup {
+    on_attach = nvlsp.on_attach,
+    on_init = nvlsp.on_init,
+    capabilities = nvlsp.capabilities,
     settings = {
       Lua = {
         diagnostics = {
-          globals = { 'vim' },
+          globals = { 'vim', 'jit' },
         },
       },
     },
   }
   lspconfig.tailwindcss.setup {
+    on_attach = nvlsp.on_attach,
+    on_init = nvlsp.on_init,
+    capabilities = nvlsp.capabilities,
     filetypes = {
       'html',
       'elixir',
@@ -49,10 +55,15 @@ local function lsp_setup()
   }
 
   lspconfig.lexical.setup {
+    on_attach = nvlsp.on_attach,
+    on_init = nvlsp.on_init,
+    capabilities = nvlsp.capabilities,
     cmd = { 'lexical' },
   }
 
   lspconfig.sourcekit.setup {
+    on_attach = nvlsp.on_attach,
+    on_init = nvlsp.on_init,
     cmd = {
       "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/sourcekit-lsp",
     },

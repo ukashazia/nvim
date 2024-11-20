@@ -7,6 +7,14 @@ M = {
     else
       return false
     end
+  end,
+
+  -- Get the current operating system
+  -- @return string
+  get_system = function()
+    local os = jit.os
+
+    return string.lower(os)
   end
 }
 

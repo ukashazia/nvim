@@ -7,25 +7,7 @@ return {
   {
     'nvim-treesitter/nvim-treesitter',
     opts = {
-      ensure_installed = {
-        'vim',
-        'lua',
-        'vimdoc',
-        'html',
-        'css',
-        'eex',
-        'elixir',
-        'erlang',
-        'heex',
-        'html',
-        'surface',
-        'javascript',
-        'typescript',
-        'java',
-        'python',
-        'c',
-        'cpp',
-      },
+      ensure_installed = 'all',
       auto_install = true, -- Automatically installs missing parsers without prompts
       highlight = { enable = true, use_languagetree = true },
       indent = { enable = true },
