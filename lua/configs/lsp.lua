@@ -17,6 +17,14 @@ M.servers = {
   'bashls',
   'eslint',
   'rust_analyzer',
+  'gopls',
+  'cmake',
+  'ember',
+  'gradle_ls',
+  'html',
+  'biome',
+  'nginx_language_server',
+  'taplo',
 }
 
 M.InstallLsps = function()
