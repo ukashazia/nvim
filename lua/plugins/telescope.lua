@@ -7,8 +7,10 @@ local ignored_glob_patterns = {
   "--glob=!**/dist/*",
   "--glob=!**/node_modules/*",
   "--glob=!**/*.lock*",
-  "--glob=!**/lexical*",
+  "--glob=!**/*-lock*",
+  "--glob=!**/.lexical*",
   "--glob=!*elixir_ls*",
+  "--glob=!**/deps/**",
 }
 
 return {
@@ -66,6 +68,23 @@ return {
               "rg",
               "--files",
               "--hidden",
+              -- LSP errors are due to mismatched lua versions (nvim uses an embedded version of lua that is different from the system version)
+              unpack(ignored_glob_patterns),
+            },
+          },
+          live_grep = {
+            hidden = true,
+            -- needed to exclude some files & dirs from general search
+            -- when not included or specified in .gitignore
+            find_command = {
+              "rg",
+              "--hidden",
+              "--no-heading",
+              "--with-filename",
+              "--line-number",
+              "--column",
+              "--smart-case",
+              "--unrestricted",
               -- LSP errors are due to mismatched lua versions (nvim uses an embedded version of lua that is different from the system version)
               unpack(ignored_glob_patterns),
             },

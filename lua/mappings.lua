@@ -27,7 +27,6 @@ map({ 'n', 'v' }, 'B', '^', { desc = 'Move to beginning of line' })
 map({ 'n', 'v' }, 'E', '$', { desc = 'Move to end of line' })
 map({ 'n', 'v' }, '<leader>th', '<leader>h', { desc = 'Horizontal terminal' })
 map({ 'n', 'v' }, '<leader>tv', '<leader>v', { desc = 'Vertical terminal' })
-map({ 'n', 'v' }, '<leader>tt', ':Telescope<CR>', { desc = 'Open Telescope' })
 map({ 'n', 'v' }, '<leader>dd', 'vim.lsp.buf.hover()', { desc = 'Open documemtation' })
 map({ 'n' }, '<leader>bc', ':let @+ = expand("%")<cr>', { desc = 'Copy buffer path (relative)' })
 map({ 'n' }, '<leader>bca', ':let @+ = expand("%:p")<cr>', { desc = 'Copy buffer path (absolute)' })
@@ -38,6 +37,8 @@ map({ "v", "n" }, "<leader>ybs", ':%y+<CR>', { desc = "Copy whole buffer into sy
 map("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>", { noremap = true, silent = true, desc = "Go to declaration" })
 map("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", { noremap = true, silent = true, desc = "Go to definition" })
 map("n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>", { noremap = true, silent = true, desc = "Go to usage" })
+map("n", "<C-S-L>", "gt", { noremap = true, silent = true, desc = "Go to next tab" })
+map("n", "<C-S-H>", "gT", { noremap = true, silent = true, desc = "Go to previous tab" })
 
 -- select and move multiple lines up & down
 map('n', '<leader>uo', require('undotree').open, { noremap = true, silent = true })
@@ -86,6 +87,8 @@ map('n', '<leader>fml', '<cmd>CellularAutomaton make_it_rain<CR>')
 
 -- Telescope --
 
+map({ 'n', 'v' }, '<leader>tt', ':Telescope<CR>', { desc = 'Open Telescope' })
+map({ 'n', 'v' }, '<leader>fr', ':Telescope resume<CR>', { desc = 'Open last Telescope window', silent = true })
 map('n', '<leader>fw', '<cmd>Telescope live_grep<CR>', { desc = 'telescope live grep' })
 map('n', '<leader>fb', '<cmd>Telescope buffers<CR>', { desc = 'telescope find buffers' })
 map('n', '<leader>fh', '<cmd>Telescope help_tags<CR>', { desc = 'telescope help page' })
@@ -150,11 +153,12 @@ map('n', '<leader>fm', function()
   require('conform').format { lsp_fallback = true }
 end, { desc = 'general format file' })
 
-map('n', '<TAB>', function()
+-- Bufferline
+map('n', '<Tab>', function()
   require('bufferline').cycle(1)
 end, { desc = 'buffer goto next' })
 
-map('n', '<S-TAB>', function()
+map('n', '<S-Tab>', function()
   require('bufferline').cycle(-1)
 end, { desc = 'buffer goto prev' })
 

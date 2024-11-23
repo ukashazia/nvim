@@ -5,7 +5,7 @@ local opt = vim.opt
 local o = vim.o
 local g = vim.g
 
-opt.spell = true
+opt.spell = false
 opt.spelllang = { "en_us" }
 -- vim.g.base46_cache = vim.fn.stdpath "data" .. "/base46/"
 vim.g.mapleader = " "
