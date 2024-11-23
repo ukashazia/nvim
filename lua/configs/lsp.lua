@@ -23,7 +23,6 @@ M.servers = {
   'gradle_ls',
   'html',
   'biome',
-  'nginx_language_server',
   'taplo',
 }
 

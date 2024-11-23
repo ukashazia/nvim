@@ -151,18 +151,25 @@ local config = function()
 end
 
 return {
-  "hrsh7th/nvim-cmp",
-  -- name = "nvim-cmp", -- Otherwise highlighting gets messed up
+  "iguanacucumber/magazine.nvim",
+  name = "nvim-cmp", -- Otherwise highlighting gets messed up
+  -- "hrsh7th/nvim-cmp",
   config = config,
   event = "InsertEnter",
   dependencies = {
-    "hrsh7th/cmp-nvim-lsp",
+    "iguanacucumber/mag-nvim-lsp",
+    name = "cmp-nvim-lsp",
+    -- "hrsh7th/cmp-nvim-lsp",
     dependencies = {
       'windwp/nvim-autopairs',
       "L3MON4D3/LuaSnip",
-      "hrsh7th/cmp-buffer",
-      "hrsh7th/cmp-path",
-      "hrsh7th/cmp-nvim-lua",
+      { "iguanacucumber/mag-buffer",                            name = "cmp-buffer" },
+      { "iguanacucumber/mag-cmdline",                           name = "cmp-cmdline" },
+      -- "hrsh7th/cmp-buffer",
+      { url = "https://codeberg.org/FelipeLema/cmp-async-path", name = "cmp-path" },
+      -- "hrsh7th/cmp-path",
+      { "iguanacucumber/mag-nvim-lua",                          name = "cmp-nvim-lua" },
+      -- "hrsh7th/cmp-nvim-lua",
       "ray-x/cmp-treesitter",
       "saadparwaiz1/cmp_luasnip",
       "roobert/tailwindcss-colorizer-cmp.nvim",

@@ -46,5 +46,19 @@ require('lazy').setup {
   },
   -- automatically check for plugin updates
   checker = { enabled = true },
-  silent = true,
+  performance = {
+    rtp = {
+      ---@type string[] list any plugins you want to disable here
+      disabled_plugins = {
+        "matchit",
+        "gzip",
+        "matchparen",
+        "netrwPlugin",
+        "tarPlugin",
+        "tohtml",
+        "tutor",
+        "zipPlugin",
+      },
+    },
+  },
 }

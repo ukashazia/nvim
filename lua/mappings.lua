@@ -150,14 +150,11 @@ map('n', '<leader>fm', function()
   require('conform').format { lsp_fallback = true }
 end, { desc = 'general format file' })
 
--- Tabline
--- map("n", "<leader>b", "<cmd>enew<CR>", { desc = "buffer new" })
-
-map('n', '<tab>', function()
+map('n', '<TAB>', function()
   require('bufferline').cycle(1)
 end, { desc = 'buffer goto next' })
 
-map('n', '<S-tab>', function()
+map('n', '<S-TAB>', function()
   require('bufferline').cycle(-1)
 end, { desc = 'buffer goto prev' })
 
