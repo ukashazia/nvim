@@ -16,6 +16,8 @@ RUN apk update && apk upgrade && \
   fd \
   clang \
   gcc \
+  g++ \
+  make \
   nodejs \
   npm \
   python3
