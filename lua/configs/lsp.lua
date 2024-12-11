@@ -1,6 +1,7 @@
 local M = {}
 
 M.servers = {
+  'arduino_language_server',
   'lexical',
   'cssls',
   'docker_compose_language_service',

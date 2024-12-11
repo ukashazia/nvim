@@ -8,7 +8,7 @@ CONFIG_ROOT=$(dirname "$SCRIPT_PATH")/../
 cd $CONFIG_ROOT
 
 if [ $VERBOSE -eq 1 ]; then
-    docker build --progress=plain --debug -t nvim:latest -f docker/Dockerfile .
+    docker build -t nvim:latest -f docker/Dockerfile .
 else
     docker build -t nvim:latest -f docker/Dockerfile .
 fi
