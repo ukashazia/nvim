@@ -26,9 +26,7 @@ WORKDIR /workdir
 
 COPY . /root/.config/nvim
 
-RUN nvim --headless \
-  '+Lazy! sync' \  
-  +TSUpdateSync 
+RUN nvim --headless '+Lazy! sync' +TSUpdateSync +qall
 
 CMD [ "nvim", "/workdir" ]
 
