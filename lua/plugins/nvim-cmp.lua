@@ -163,6 +163,7 @@ local config = function()
 end
 
 return {
+  enabled = false,
   "iguanacucumber/magazine.nvim",
   name = "nvim-cmp", -- Otherwise highlighting gets messed up
   -- "hrsh7th/nvim-cmp",

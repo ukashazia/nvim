@@ -47,6 +47,7 @@ return {
       custom_highlights = {},
       default_integrations = true,
       integrations = {
+        blink_cmp = true,
         cmp = true,
         gitsigns = true,
         nvimtree = true,
@@ -69,7 +70,6 @@ return {
         },
         indent_blankline = {
           enabled = true,
-          scope_color = "", -- catppuccin color (eg. `lavender`) Default: text
           colored_indent_levels = true,
         },
         treesitter_context = true,
