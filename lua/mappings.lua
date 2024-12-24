@@ -95,9 +95,9 @@ map('n', '<leader>cm', '<cmd>Telescope git_commits<CR>', { desc = 'telescope git
 map('n', '<leader>gt', '<cmd>Telescope git_status<CR>', { desc = 'telescope git status' })
 map('n', '<leader>pt', '<cmd>Telescope terms<CR>', { desc = 'telescope pick hidden term' })
 
-map('n', '<leader>th', function()
-  require('nvchad.themes').open()
-end, { desc = 'telescope nvchad themes' })
+-- map('n', '<leader>th', function()
+--   require('nvchad.themes').open()
+-- end, { desc = 'telescope nvchad themes' })
 
 -- map('n', '<leader>ff', '<cmd>Telescope find_files<cr>', { desc = 'telescope find files' })
 map('n', '<leader>ff', '<cmd>Telescope find_files follow=true no_ignore=true hidden=true<CR>',
@@ -150,15 +150,15 @@ map('n', '<leader>fm', function()
 end, { desc = 'general format file' })
 
 -- Bufferline
-map('n', '<Tab>', function()
-  require('bufferline').cycle(1)
-end, { desc = 'buffer goto next' })
-
-map('n', '<S-Tab>', function()
-  require('bufferline').cycle(-1)
-end, { desc = 'buffer goto prev' })
-
-map('n', '<leader>X', ':bd<cr>', { desc = 'buffer close' })
+-- map('n', '<Tab>', function()
+--   require('bufferline').cycle(1)
+-- end, { desc = 'buffer goto next' })
+--
+-- map('n', '<S-Tab>', function()
+--   require('bufferline').cycle(-1)
+-- end, { desc = 'buffer goto prev' })
+--
+-- map('n', '<leader>X', ':bd<cr>', { desc = 'buffer close' })
 
 -- Trouble
 
@@ -180,3 +180,6 @@ map({ 'v', 'n' }, '<leader>xL', '<cmd>Trouble loclist toggle<cr>', {
 map({ 'v', 'n' }, '<leader>xQ', '<cmd>Trouble qflist toggle<cr>', {
   desc = 'Quickfix List (Trouble)',
 })
+
+-- Ter
+map('t', '<C-\\>', [[<C-\><C-n>]], { noremap = true, silent = true })

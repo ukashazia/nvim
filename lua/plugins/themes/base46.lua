@@ -1,4 +1,5 @@
 return {
+  enabled = false,
   "nvchad/base46",
   lazy = true,
   build = function()

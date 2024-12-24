@@ -1,5 +1,6 @@
 return {
-  "nvchad/ui",
+  enabled = false,
+ "nvchad/ui",
   lazy = false,
   config = function()
     require "nvchad"

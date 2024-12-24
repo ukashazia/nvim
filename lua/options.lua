@@ -1,5 +1,5 @@
 -- following line should be placed before importing or configuring 'Lazy'
-vim.g.base46_cache = vim.fn.stdpath "data" .. "/base46_cache/"
+-- vim.g.base46_cache = vim.fn.stdpath "data" .. "/base46_cache/"
 
 local opt = vim.opt
 local o = vim.o
@@ -66,3 +66,4 @@ o.updatetime = 250
 opt.termguicolors = true
 
 o.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"
+

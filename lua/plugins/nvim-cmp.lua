@@ -1,4 +1,4 @@
-dofile(vim.g.base46_cache .. 'cmp')
+-- dofile(vim.g.base46_cache .. 'cmp')
 
 ---@diagnostic disable: undefined-field
 
@@ -38,9 +38,21 @@ local config = function()
       end,
     },
     window = {
-      completion = cmp.config.window.bordered(),
-      documentation = cmp.config.window.bordered(),
+      completion = cmp.config.window.bordered({
+        col_offset = -3,
+        side_padding = 0,
+        winhighlight = "Normal:Normal,FloatBorder:FloatBorder,CursorLine:Visual,Search:None",
+      }),
+      documentation = cmp.config.window.bordered({
+        winhighlight = "Normal:Normal,FloatBorder:FloatBorder,CursorLine:Visual,Search:None",
+      }),
     },
+
+    -- window = {
+    --   completion = cmp.config.window.bordered(),
+    --   documentation = cmp.config.window.bordered(),
+    -- },
+
     view = {
       entries = {
         name = "custom",
