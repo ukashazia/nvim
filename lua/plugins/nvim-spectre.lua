@@ -1,6 +1,5 @@
 return {
-
-"nvim-pack/nvim-spectre",
-opts = {}
-
-} 
+  enable = false,
+  "nvim-pack/nvim-spectre",
+  opts = {}
+}
