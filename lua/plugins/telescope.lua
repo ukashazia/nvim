@@ -11,6 +11,19 @@ local ignored_glob_patterns = {
   "--glob=!**/.lexical*",
   "--glob=!*elixir_ls*",
   "--glob=!**/deps/**",
+
+  "--glob=!**/*.png",
+  "--glob=!**/*.jpeg",
+  "--glob=!**/*.jpg",
+  "--glob=!**/*.ttf",
+  "--glob=!**/*.woff",
+  "--glob=!**/*.woff2",
+  "--glob=!**/*.gif",
+  "--glob=!**/*.pdf",
+  "--glob=!**/*.zip",
+  "--glob=!**/*.tar",
+  "--glob=!**/*.gz",
+  "--glob=!**/*.webp",
 }
 
 return {

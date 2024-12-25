@@ -61,5 +61,10 @@ opt.termguicolors = true
 
 o.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"
 
-g.neovide_cursor_animation_length = 0
-g.neovide_scroll_animation_length = 0
+if g.neovide then
+  g.neovide_cursor_animation_length = 0
+  g.neovide_scale_factor = 1.0
+  g.neovide_window_blurred = true
+  g.neovide_refresh_rate = 60
+  o.guifont = "JetBrainsMono Nerd Font Mono"
+end
