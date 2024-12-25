@@ -54,8 +54,8 @@ return {
       menu = {
         min_width = 30,
         max_height = 15,
-        border = 'rounded',
-        winblend = 10,
+        -- border = 'rounded',
+        -- winblend = 10,
         -- draw = {
         --   padding = 1,
         --   gap = 1,
@@ -82,7 +82,7 @@ return {
       documentation = {
         auto_show = true,
         auto_show_delay_ms = 200,
-        window = { border = 'rounded' }
+        -- window = { border = 'rounded' }
       },
       ghost_text = { enabled = false },
     },

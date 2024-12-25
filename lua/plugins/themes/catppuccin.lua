@@ -56,7 +56,6 @@ return {
 
         telescope = {
           enabled = true,
-          -- style = "nvchad"
         },
         diffview = true,
         mason = true,
@@ -75,12 +74,6 @@ return {
         treesitter_context = true,
         which_key = true,
         markdown = true,
-
-        -- mini = {
-        --   enabled = true,
-        --   indentscope_color = "",
-        -- },
-        -- For more plugins integrations please scroll down (https://github.com/catppuccin/nvim#integrations)
       },
     })
   end

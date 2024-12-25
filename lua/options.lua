@@ -1,13 +1,9 @@
--- following line should be placed before importing or configuring 'Lazy'
--- vim.g.base46_cache = vim.fn.stdpath "data" .. "/base46_cache/"
-
 local opt = vim.opt
 local o = vim.o
 local g = vim.g
 
 opt.spell = false
 opt.spelllang = { "en_us" }
--- vim.g.base46_cache = vim.fn.stdpath "data" .. "/base46/"
 vim.g.mapleader = " "
 opt.number = true
 opt.relativenumber = true
@@ -17,8 +13,6 @@ opt.swapfile = false
 opt.backup = false
 opt.undodir = os.getenv "HOME" .. "/.vim/undodir"
 opt.undofile = true
-
--- copied from nvchad
 
 -- disable some default providers
 g.loaded_node_provider = 0
@@ -67,3 +61,5 @@ opt.termguicolors = true
 
 o.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"
 
+g.neovide_cursor_animation_length = 0
+g.neovide_scroll_animation_length = 0
