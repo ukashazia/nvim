@@ -2,7 +2,7 @@ local opt = vim.opt
 local o = vim.o
 local g = vim.g
 
-opt.spell = false
+opt.spell = true
 opt.spelllang = { "en_us" }
 vim.g.mapleader = " "
 opt.number = true
@@ -45,9 +45,6 @@ o.ignorecase = true
 o.smartcase = true
 o.mouse = "a"
 
--- disable nvim intro
-opt.shortmess:append "sI"
-
 o.signcolumn = "yes"
 o.splitbelow = true
 o.splitright = true
@@ -66,5 +63,5 @@ if g.neovide then
   g.neovide_scale_factor = 1.0
   g.neovide_window_blurred = true
   g.neovide_refresh_rate = 60
-  o.guifont = "JetBrainsMono Nerd Font Mono"
+  o.guifont = "JetBrainsMono Nerd Font Mono:h13"
 end
