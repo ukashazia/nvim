@@ -1,11 +1,11 @@
 return {
   "folke/tokyonight.nvim",
   lazy = false,
-  priority = 1000,
+  priority = 2000,
   opts = {},
   config = function()
     require("tokyonight").setup {
-      style = "storm", -- Options: "storm", "night", "moon"
+      style = "night", -- Options: "storm", "night", "moon"
       transparent = false, -- Enable transparent background
       terminal_colors = true, -- Use colors in Neovim terminal
       styles = {
