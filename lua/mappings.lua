@@ -76,7 +76,7 @@ map('n', '<leader>gt', '<cmd>Telescope git_status<CR>', { desc = 'telescope git 
 map('n', '<leader>ff', '<cmd>Telescope find_files follow=true no_ignore=true hidden=true<CR>',
   { desc = 'telescope find all files' })
 map("n", "<leader>tb", ":Telescope file_browser<CR>")
-map("n", "<leader>tc", ":Telescope neoclip<CR>", { desc = "Telescope Clipboard" })
+map({ "n", "v" }, "<leader>tc", ":Telescope neoclip<CR>", { desc = "Telescope Clipboard" })
 map({ "n", "v" }, "<leader>tm", ":Telescope macroscope<CR>", { desc = "Telescope Macros" })
 
 -- Search with Telescope
@@ -93,18 +93,17 @@ function vim.getVisualSelection()
   end
 end
 
-local keymap = vim.keymap.set
 local tb = require 'telescope.builtin'
 local opts = { noremap = true, silent = true }
 
-keymap('n', '<leader>g', ':Telescope current_buffer_fuzzy_find<cr>', opts)
-keymap('v', '<leader>g', function()
+map('n', '<leader>g', ':Telescope current_buffer_fuzzy_find<cr>', opts)
+map('v', '<leader>g', function()
   local text = vim.getVisualSelection()
   tb.current_buffer_fuzzy_find { default_text = text }
 end, opts)
 
-keymap('n', '<leader>G', ':Telescope live_grep<cr>', opts)
-keymap('v', '<leader>G', function()
+map('n', '<leader>G', ':Telescope live_grep<cr>', opts)
+map('v', '<leader>G', function()
   local text = vim.getVisualSelection()
   tb.live_grep { default_text = text }
 end, opts)
@@ -127,7 +126,7 @@ map({ 'v', 'n' }, '<leader>xx', '<cmd>Trouble diagnostics toggle<cr>', {
   desc = 'Diagnostics (Trouble)',
 })
 map({ 'v', 'n' }, '<leader>xX', '<cmd>Trouble diagnostics toggle filter.buf=0<cr>', {
-  desc = 'Buffer Diagnostics (Trouble)',
+ desc = 'Buffer Diagnostics (Trouble)',
 })
 map({ 'v', 'n' }, '<leader>cs', '<cmd>Trouble symbols toggle focus=false<cr>', {
   desc = 'Symbols (Trouble)',
@@ -144,3 +143,6 @@ map({ 'v', 'n' }, '<leader>xQ', '<cmd>Trouble qflist toggle<cr>', {
 
 -- builtin Terminal
 map('t', '<C-\\>', [[<C-\><C-n>]], { noremap = true, silent = true })
+
+-- Oil nvim
+map('n', '<leader>F', '<cmd>Oil<CR>', { desc = 'Open Oil' })

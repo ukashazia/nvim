@@ -35,15 +35,16 @@ return {
         operators = {},
         -- miscs = {}, -- Uncomment to turn off hard-coded styles
       },
-      color_overrides = {},
-      -- color_overrides = {
-      --   mocha = {
-      --     base = "#0b0b12",
-      --     mantle = "#11111a",
-      --     crust = "#191926",
-      --   },
-      -- },
-
+      color_overrides = {
+        mocha = {
+          base = "#11111a",
+          mantle = "#11111a",
+          crust = "#11111a",
+          --   base = "#0b0b12",
+          --   mantle = "#11111a",
+          --   crust = "#191926",
+        },
+      },
       custom_highlights = {},
       default_integrations = true,
       integrations = {
