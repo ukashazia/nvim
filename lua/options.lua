@@ -2,7 +2,7 @@ local opt = vim.opt
 local o = vim.o
 local g = vim.g
 
-opt.spell = true
+opt.spell = false
 opt.spelllang = { "en_us" }
 vim.g.mapleader = " "
 opt.number = true
@@ -38,10 +38,8 @@ o.showmode = false
 
 -- o.clipboard = "unnamedplus"
 o.cursorline = true
-o.cursorlineopt = "number"
+o.cursorlineopt = "line,number"
 
-opt.fillchars = { eob = " " }
-o.ignorecase = true
 o.smartcase = true
 o.mouse = "a"
 
@@ -49,7 +47,6 @@ o.signcolumn = "yes"
 o.splitbelow = true
 o.splitright = true
 o.timeoutlen = 400
-o.undofile = true
 
 -- interval for writing swap file to disk, also used by gitsigns
 o.updatetime = 250
