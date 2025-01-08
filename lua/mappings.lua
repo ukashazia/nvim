@@ -145,4 +145,4 @@ map({ 'v', 'n' }, '<leader>xQ', '<cmd>Trouble qflist toggle<cr>', {
 map('t', '<C-\\>', [[<C-\><C-n>]], { noremap = true, silent = true })
 
 -- Oil nvim
-map('n', '<leader>F', '<cmd>Oil<CR>', { desc = 'Open Oil' })
+map('n', '-', '<cmd>Oil --float<CR>', { desc = 'Open Oil' })
