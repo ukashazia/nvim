@@ -23,6 +23,13 @@ M.on_attach = function(_, bufnr)
 
   map({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, opts "Code action")
   map("n", "gr", vim.lsp.buf.references, opts "Show references")
+
+  vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover,
+    { border = "rounded", width = 80})
+  vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = "rounded" })
+
+
+  vim.lsp.inlay_hint.enable(true, { bufnr = bufnr })
 end
 
 -- disable semanticTokens

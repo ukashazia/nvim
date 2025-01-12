@@ -50,29 +50,39 @@ return {
       ['<C-space>'] = { function(cmp) cmp.show({ providers = { 'snippets' } }) end },
     },
 
+    signature = {
+      window = {
+        border = 'rounded',
+      },
+    },
+
     completion = {
       menu = {
         min_width = 30,
         max_height = 15,
-        -- border = 'rounded',
-        -- winblend = 10,
-        -- draw = {
-        --   padding = 1,
-        --   gap = 1,
-        --   -- components = {
-        --   --   kind_icon = {
-        --   --     ellipsis = false,
-        --   --     text = function(ctx)
-        --   --       local kind_icon, _, _ = require('mini.icons').get('lsp', ctx.kind)
-        --   --       return kind_icon
-        --   --     end,
-        --   --     highlight = function(ctx)
-        --   --       local _, hl, _ = require('mini.icons').get('lsp', ctx.kind)
-        --   --       return hl
-        --   --     end,
-        --   --   },
-        --   -- },
+        border = 'rounded',
+        -- documenation = {
+        --   window = {
+        --     border = 'rounded',
+        --   }
         -- },
+        draw = {
+          -- padding = 1,
+          --   gap = 1,
+          --   -- components = {
+          --   --   kind_icon = {
+          --   --     ellipsis = false,
+          --   --     text = function(ctx)
+          --   --       local kind_icon, _, _ = require('mini.icons').get('lsp', ctx.kind)
+          --   --       return kind_icon
+          --   --     end,
+          --   --     highlight = function(ctx)
+          --   --       local _, hl, _ = require('mini.icons').get('lsp', ctx.kind)
+          --   --       return hl
+          --   --     end,
+          --   --   },
+          -- },
+        },
       },
       list = {
         selection = {
@@ -83,7 +93,7 @@ return {
       documentation = {
         auto_show = true,
         auto_show_delay_ms = 200,
-        -- window = { border = 'rounded' }
+        window = { border = 'rounded' }
       },
       ghost_text = { enabled = false },
     },

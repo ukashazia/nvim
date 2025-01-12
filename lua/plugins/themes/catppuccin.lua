@@ -10,7 +10,7 @@ return {
         dark = "mocha",
       },
       transparent_background = false, -- disables setting the background color.
-      show_end_of_buffer = true,     -- shows the '~' characters after the end of buffers
+      show_end_of_buffer = true,      -- shows the '~' characters after the end of buffers
       term_colors = false,            -- sets terminal colors (e.g. `g:terminal_color_0`)
       dim_inactive = {
         enabled = false,              -- dims the background color of inactive window
@@ -25,7 +25,7 @@ return {
         conditionals = { "italic" },
         loops = {},
         functions = {},
-        keywords = {"italic"},
+        keywords = { "italic" },
         strings = {},
         variables = {},
         numbers = {},
@@ -40,12 +40,14 @@ return {
           base = "#11111a",
           mantle = "#11111a",
           crust = "#11111a",
-          --   base = "#0b0b12",
-          --   mantle = "#11111a",
-          --   crust = "#191926",
         },
       },
-      custom_highlights = {},
+      custom_highlights = function(colors)
+        return {
+          BlinkCmpMenu = { bg = colors.base },
+          BlinkCmpMenuBorder = { bg = colors.base }
+        }
+      end,
       default_integrations = true,
       integrations = {
         blink_cmp = true,
