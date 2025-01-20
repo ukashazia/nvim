@@ -10,12 +10,6 @@ map('v', 'K', ":m '<-2<CR>gv=gv")
 -- clear highlights
 map('n', '<Esc>', '<cmd>noh<CR>', { desc = 'general clear highlights' })
 
--- move between windows
-map('n', '<C-h>', '<C-w>h', { desc = 'switch window left' })
-map('n', '<C-l>', '<C-w>l', { desc = 'switch window right' })
-map('n', '<C-j>', '<C-w>j', { desc = 'switch window down' })
-map('n', '<C-k>', '<C-w>k', { desc = 'switch window up' })
-
 map({ 'n' }, '<leader>bc', ':let @+ = expand("%")<cr>', { desc = 'Copy buffer path (relative)' })
 map({ 'n' }, '<leader>bca', ':let @+ = expand("%:p")<cr>', { desc = 'Copy buffer path (absolute)' })
 

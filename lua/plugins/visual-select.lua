@@ -1,7 +1,8 @@
 return {
-  dir = "lua/plugins/custom/visual-select.nvim",
+  dir = "~/.config/nvim/lua/plugins/custom/visual-select.nvim",
   opts = {
     -- The highlight group to apply to matched text
+    --
     hl_group = "Search",
     -- The minimum number of selected characters required to trigger highlighting
     chars_lower_limit = 6,

@@ -4,7 +4,7 @@ local map = vim.keymap.set
 -- export on_attach & capabilities
 M.on_attach = function(_, bufnr)
   local function opts(desc)
-    return { buffer = bufnr, desc = "LSP " .. desc }
+    return { buffer = bufnr, desc = "LSP " .. desc, noremap = true }
   end
 
   map("n", "gD", vim.lsp.buf.declaration, opts "Go to declaration")
@@ -14,6 +14,7 @@ M.on_attach = function(_, bufnr)
   map("n", "<leader>wa", vim.lsp.buf.add_workspace_folder, opts "Add workspace folder")
   map("n", "<leader>wr", vim.lsp.buf.remove_workspace_folder, opts "Remove workspace folder")
   map("n", "<leader>rn", vim.lsp.buf.rename, opts "Rename stuff")
+  map("n", "<leader>mf", vim.diagnostic.open_float, opts "Open diagnostic float")
 
   map("n", "<leader>wl", function()
     print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
@@ -25,11 +26,11 @@ M.on_attach = function(_, bufnr)
   map("n", "gr", vim.lsp.buf.references, opts "Show references")
 
   vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover,
-    { border = "rounded", width = 80})
+    { border = "rounded", width = 80 })
   vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = "rounded" })
 
 
-  vim.lsp.inlay_hint.enable(true, { bufnr = bufnr })
+  -- vim.lsp.inlay_hint.enable(true, { bufnr = bufnr })
 end
 
 -- disable semanticTokens
