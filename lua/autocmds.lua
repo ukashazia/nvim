@@ -25,3 +25,9 @@ autocmd({ "UIEnter", "BufReadPost", "BufNewFile" }, {
     end
   end,
 })
+
+autocmd('TextYankPost', {
+  callback = function()
+    vim.highlight.on_yank({ timeout = 100 })
+  end,
+})

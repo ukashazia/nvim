@@ -3,4 +3,5 @@ require "options"
 require "configs.lazy"
 
 require "mappings"
+require "autocmds"
 vim.cmd [[colorscheme catppuccin]]
