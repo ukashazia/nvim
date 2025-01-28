@@ -3,7 +3,6 @@ local harpoon = require 'harpoon'
 local map = vim.keymap.set
 local api_map = vim.api.nvim_set_keymap
 
-map({ 'v', 'i' }, 'Y', 'y$')
 map('v', 'J', ":m '>+1<CR>gv=gv")
 map('v', 'K', ":m '<-2<CR>gv=gv")
 
@@ -13,8 +12,9 @@ map('n', '<Esc>', '<cmd>noh<CR>', { desc = 'general clear highlights' })
 map({ 'n' }, '<leader>bc', ':let @+ = expand("%")<cr>', { desc = 'Copy buffer path (relative)' })
 map({ 'n' }, '<leader>bca', ':let @+ = expand("%:p")<cr>', { desc = 'Copy buffer path (absolute)' })
 
-map({ "v", "n" }, "ps", '"+p', { desc = 'Paste from system clipboard' })
-map({ "v" }, "ys", '"+y', { desc = 'Copy to system clipboard' })
+map({ "v", "n" }, "<S-P>", '"+p', { desc = 'Paste from system clipboard' })
+map({ "v" }, "<S-Y>", '"+y', { desc = 'Copy to system clipboard' })
+map({ "n" }, "<S-Y>", '"+yy', { desc = 'Copy to system clipboard' })
 
 map({ "v", "n" }, "<leader>yb", ':%y<CR>', { desc = 'Copy whole buffer' })
 map({ "v", "n" }, "<leader>ybs", ':%y+<CR>', { desc = "Copy whole buffer into system's clipboard" })
