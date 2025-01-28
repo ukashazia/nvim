@@ -23,8 +23,8 @@ map("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>", { noremap = true, silen
 map("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", { noremap = true, silent = true, desc = "Go to definition" })
 map("n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>", { noremap = true, silent = true, desc = "Go to usage" })
 
-map("n", "<C-S-h>", "<cmd>tabprevious<CR>", { noremap = true, silent = true, desc = "Go to previous tab" })
-map("n", "<C-S-l>", "<cmd>tabnext<CR>", { noremap = true, silent = true, desc = "Go to next tab" })
+map("n", "<C-S-H>", "<cmd>tabprevious<CR>", { noremap = true, silent = true, desc = "Go to previous tab" })
+map("n", "<C-S-L>", "<cmd>tabnext<CR>", { noremap = true, silent = true, desc = "Go to next tab" })
 
 -- binds for harpoon
 map('n', '<leader>h', function()

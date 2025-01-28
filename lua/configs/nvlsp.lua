@@ -14,7 +14,7 @@ M.on_attach = function(_, bufnr)
   map("n", "<leader>wa", vim.lsp.buf.add_workspace_folder, opts "Add workspace folder")
   map("n", "<leader>wr", vim.lsp.buf.remove_workspace_folder, opts "Remove workspace folder")
   map("n", "<leader>rn", vim.lsp.buf.rename, opts "Rename stuff")
-  map("n", "<leader>mf", vim.diagnostic.open_float, opts "Open diagnostic float")
+  map("n", "H", vim.diagnostic.open_float, opts "Open diagnostic float")
 
   map("n", "<leader>wl", function()
     print(vim.inspect(vim.lsp.buf.list_workspace_folders()))

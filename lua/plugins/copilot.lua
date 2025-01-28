@@ -3,11 +3,11 @@ return {
   cmd = "Copilot",
   event = "InsertEnter",
 
-  config = function() -- Mapping tab is already used by NvChad
+  config = function()
     require("copilot").setup({
       panel = {
-        enabled = true,
-        auto_refresh = false,
+        enabled = false,
+        auto_refresh = true,
         keymap = {
           jump_prev = "[[",
           jump_next = "]]",
@@ -16,7 +16,7 @@ return {
           open = "<M-CR>"
         },
         layout = {
-          position = "bottom", -- | top | left | right | horizontal | vertical
+          position = "right", -- | top | left | right | horizontal | vertical
           ratio = 0.4
         },
       },
@@ -52,6 +52,14 @@ return {
     vim.g.copilot_no_tab_map = true
     vim.g.copilot_assume_mapped = true
     vim.g.copilot_tab_fallback = ""
+
+    vim.keymap.set("i", "<Tab>", function()
+      if require("copilot.suggestion").is_visible() then
+        require("copilot.suggestion").accept()
+      else
+        return vim.api.nvim_replace_termcodes("<Tab>", true, true, true)
+      end
+    end, { expr = true })
 
     vim.api.nvim_create_autocmd('User', {
       pattern = 'BlinkCmpCompletionMenuOpen',
