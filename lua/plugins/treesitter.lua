@@ -6,7 +6,7 @@ return {
         ensure_installed = 'all',
         auto_install = true,
         highlight = { enable = true, use_languagetree = true },
-        indent = { enable = true },
+        indent = { enable = false },
         ignore_install = {},
         modules = {},
         sync_install = true,

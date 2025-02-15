@@ -4,4 +4,4 @@ require "configs.lazy"
 
 require "mappings"
 require "autocmds"
-vim.cmd [[colorscheme ex-catppuccin-mocha]]
+vim.cmd [[colorscheme catppuccin]]

@@ -61,6 +61,16 @@ local function lsp_setup()
     cmd = { 'lexical' },
   }
 
+  -- lspconfig.elixirls.setup {
+  --   on_attach = nvlsp.on_attach,
+  --   on_init = nvlsp.on_init,
+  --   capabilities = nvlsp.capabilities,
+  --   cmd = { 'elixir-ls' },
+  --   elixirLS = {
+  --     dialyzerEnabled = false,
+  --   },
+  -- }
+
   lspconfig.sourcekit.setup {
     on_attach = nvlsp.on_attach,
     on_init = nvlsp.on_init,
