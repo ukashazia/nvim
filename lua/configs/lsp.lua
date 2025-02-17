@@ -27,6 +27,7 @@ M.servers = {
   'html',
   'biome',
   'taplo',
+  'zls'
 }
 
 M.InstallLsps = function()

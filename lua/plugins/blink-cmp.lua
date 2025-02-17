@@ -20,7 +20,23 @@ return {
     keymap = {
       preset = 'none',
 
-      cmdline = {
+
+      ['<C-k>'] = { 'select_prev', 'fallback' },
+      ['<C-j>'] = { 'select_next', 'fallback' },
+      ['<C-l>'] = { 'select_and_accept', 'fallback' },
+      ['<C-h>'] = { 'hide', 'fallback' },
+
+      ['<C-d>'] = { 'show_documentation', 'fallback' },
+      ['<C-u>'] = { 'scroll_documentation_up', 'fallback' },
+      ['<C-b>'] = { 'scroll_documentation_down', 'fallback' },
+      ['<C-f>'] = { 'scroll_documentation_up', 'fallback' },
+
+      -- -- show with a list of providers
+      ['<C-space>'] = { function(cmp) cmp.show({ providers = { 'snippets' } }) end },
+    },
+
+    cmdline = {
+      keymap = {
         preset = "none",
         ['<C-k>'] = { 'select_prev', 'fallback' },
         ['<C-j>'] = { 'select_next', 'fallback' },
@@ -35,19 +51,6 @@ return {
         -- -- show with a list of providers
         ['<C-space>'] = { function(cmp) cmp.show({ providers = { 'snippets' } }) end },
       },
-
-      ['<C-k>'] = { 'select_prev', 'fallback' },
-      ['<C-j>'] = { 'select_next', 'fallback' },
-      ['<C-l>'] = { 'select_and_accept', 'fallback' },
-      ['<C-h>'] = { 'hide', 'fallback' },
-
-      ['<C-d>'] = { 'show_documentation', 'fallback' },
-      ['<C-u>'] = { 'scroll_documentation_up', 'fallback' },
-      ['<C-b>'] = { 'scroll_documentation_down', 'fallback' },
-      ['<C-f>'] = { 'scroll_documentation_up', 'fallback' },
-
-      -- -- show with a list of providers
-      ['<C-space>'] = { function(cmp) cmp.show({ providers = { 'snippets' } }) end },
     },
 
     signature = {
