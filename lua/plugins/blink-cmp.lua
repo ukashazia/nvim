@@ -51,6 +51,7 @@ return {
         -- -- show with a list of providers
         ['<C-space>'] = { function(cmp) cmp.show({ providers = { 'snippets' } }) end },
       },
+      completion = { menu = { auto_show = true } },
     },
 
     signature = {
