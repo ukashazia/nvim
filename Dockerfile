@@ -26,7 +26,7 @@ COPY . /root/.config/nvim
 
 RUN nvim --headless '+Lazy sync' +qall
 RUN nvim --headless -c 'lua print("installing treesitter grammars")' +qall
-RUN nvim --headless -c 'lua require("configs.lsp").InstallLsps()' +qall
+RUN nvim --headless -c 'lua require("configs.lsp").InstallLsps()' +qall || true
 
 CMD [ "nvim", "/workdir" ]
 
