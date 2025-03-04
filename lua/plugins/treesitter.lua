@@ -1,3 +1,5 @@
+local is_headless = require('utils.core').is_headless()
+
 return {
   {
     'nvim-treesitter/nvim-treesitter',
@@ -9,7 +11,7 @@ return {
         indent = { enable = false },
         ignore_install = {},
         modules = {},
-        sync_install = false,
+        sync_install = is_headless and true,
         textobjects = {
           select = {
             enable = true,

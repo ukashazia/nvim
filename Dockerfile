@@ -1,6 +1,6 @@
-FROM archlinux:latest
+FROM debian:sid-slim
 
-RUN pacman -Syu --noconfirm \
+RUN apt update && apt install -y \
   bash \
   curl \
   git \
@@ -10,7 +10,7 @@ RUN pacman -Syu --noconfirm \
   zsh \
   ripgrep \
   fzf \
-  fd \
+  fd-find \
   clang \
   gcc \
   make \
@@ -18,8 +18,8 @@ RUN pacman -Syu --noconfirm \
   npm \
   python3 \
   luarocks \
-  lua \
-  go \
+  lua5.3 \
+  golang-go \
   cargo
 
 WORKDIR /workdir
@@ -27,7 +27,7 @@ WORKDIR /workdir
 COPY . /root/.config/nvim
 
 RUN nvim --headless '+Lazy sync' +qall
-RUN nvim --headless -c 'lua print("installing treesitter grammars")' +qall
+RUN nvim --headless '+TSInstall all' +qall
 RUN nvim --headless -c 'lua require("configs.lsp").InstallLsps()' +qall || true
 
 CMD [ "nvim", "/workdir" ]
