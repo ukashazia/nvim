@@ -9,7 +9,7 @@ return {
         indent = { enable = false },
         ignore_install = {},
         modules = {},
-        sync_install = true,
+        sync_install = false,
         textobjects = {
           select = {
             enable = true,
