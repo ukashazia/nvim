@@ -18,7 +18,8 @@ RUN pacman -Syu --noconfirm \
   npm \
   python3 \
   luarocks \
-  lua
+  lua \
+  go
 
 WORKDIR /workdir
 
