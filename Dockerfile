@@ -19,7 +19,8 @@ RUN pacman -Syu --noconfirm \
   python3 \
   luarocks \
   lua \
-  go
+  go \
+  cargo
 
 WORKDIR /workdir
 
