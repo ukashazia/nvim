@@ -1,4 +1,4 @@
-local is_headless = require('utils.core').is_headless()
+-- local is_headless = require('utils.core').is_headless()
 
 return {
   {
@@ -11,7 +11,8 @@ return {
         indent = { enable = false },
         ignore_install = {},
         modules = {},
-        sync_install = is_headless and true,
+        -- sync_install = is_headless and true,
+        sync_install = false,
         textobjects = {
           select = {
             enable = true,
