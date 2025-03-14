@@ -35,7 +35,7 @@ map('n', '<leader>a', function()
   harpoon:list():add()
 end, { desc = 'Add current buffer to harpoon' })
 
--- Github Copilot
+-- GitHub Copilot
 map('n', '<leader>cpd', ':Copilot disable<cr>', { silent = true, noremap = true, desc = 'Disable Copilot' })
 map('n', '<leader>cpe', ':Copilot enable<cr>', { silent = true, noremap = true, desc = 'Enable Copilot' })
 api_map('i', '<Tab>', 'copilot#Accept("<Tab>")', { silent = true, expr = true })
@@ -52,7 +52,7 @@ map('n', 'N', 'Nzzzv')
 
 map('n', 'G', 'Gzz')
 
--- paste without add stuff to register
+-- Paste without add stuff to register
 map("v", "<leader>p", [["_dP]])
 
 -- Telescope --
@@ -112,7 +112,7 @@ map('n', '<C-n>', '<cmd>NvimTreeToggle<CR>', { desc = 'nvimtree toggle window' }
 map('n', '<leader>e', '<cmd>NvimTreeFocus<CR>', { desc = 'nvimtree focus window' })
 
 map('n', '<leader>fm', function()
-  require('conform').format { lsp_fallback = true }
+  require('conform').format { lsp_fallback = true, async = false, }
 end, { desc = 'general format file' })
 
 -- Trouble
@@ -120,7 +120,7 @@ map({ 'v', 'n' }, '<leader>xx', '<cmd>Trouble diagnostics toggle<cr>', {
   desc = 'Diagnostics (Trouble)',
 })
 map({ 'v', 'n' }, '<leader>xX', '<cmd>Trouble diagnostics toggle filter.buf=0<cr>', {
- desc = 'Buffer Diagnostics (Trouble)',
+  desc = 'Buffer Diagnostics (Trouble)',
 })
 map({ 'v', 'n' }, '<leader>cs', '<cmd>Trouble symbols toggle focus=false<cr>', {
   desc = 'Symbols (Trouble)',

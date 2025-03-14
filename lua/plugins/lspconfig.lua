@@ -61,15 +61,38 @@ local function lsp_setup()
     cmd = { 'lexical' },
   }
 
-  -- lspconfig.elixirls.setup {
-  --   on_attach = nvlsp.on_attach,
-  --   on_init = nvlsp.on_init,
-  --   capabilities = nvlsp.capabilities,
-  --   cmd = { 'elixir-ls' },
-  --   elixirLS = {
-  --     dialyzerEnabled = false,
-  --   },
-  -- }
+  lspconfig.harper_ls.setup {
+    on_attach = nvlsp.on_attach,
+    on_init = nvlsp.on_init,
+    capabilities = nvlsp.capabilities,
+    settings = {
+      ["harper-ls"] = {
+        userDictPath = "",
+        fileDictPath = "",
+        linters = {
+          SpellCheck = true,
+          SpelledNumbers = false,
+          AnA = true,
+          SentenceCapitalization = true,
+          UnclosedQuotes = true,
+          WrongQuotes = false,
+          LongSentences = true,
+          RepeatedWords = true,
+          Spaces = true,
+          Matcher = true,
+          CorrectNumberSuffix = true
+        },
+        codeActions = {
+          ForceStable = false
+        },
+        markdown = {
+          IgnoreLinkTitle = false
+        },
+        diagnosticSeverity = "hint",
+        isolateEnglish = false
+      }
+    }
+  }
 
   lspconfig.sourcekit.setup {
     on_attach = nvlsp.on_attach,

@@ -1,6 +1,7 @@
 local M = {}
 
 M.servers = {
+  'harper_ls',
   'ansiblels',
   'arduino_language_server',
   'jinja_lsp',
