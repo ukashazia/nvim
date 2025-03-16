@@ -1,4 +1,5 @@
 local harpoon = require 'harpoon'
+local Snacks = require 'snacks'
 
 local map = vim.keymap.set
 local api_map = vim.api.nvim_set_keymap
@@ -35,7 +36,7 @@ map('n', '<leader>a', function()
   harpoon:list():add()
 end, { desc = 'Add current buffer to harpoon' })
 
--- Github Copilot
+-- GitHub Copilot
 map('n', '<leader>cpd', ':Copilot disable<cr>', { silent = true, noremap = true, desc = 'Disable Copilot' })
 map('n', '<leader>cpe', ':Copilot enable<cr>', { silent = true, noremap = true, desc = 'Enable Copilot' })
 api_map('i', '<Tab>', 'copilot#Accept("<Tab>")', { silent = true, expr = true })
@@ -52,67 +53,23 @@ map('n', 'N', 'Nzzzv')
 
 map('n', 'G', 'Gzz')
 
--- paste without add stuff to register
+-- Paste without add stuff to register
 map("v", "<leader>p", [["_dP]])
 
+map('n', '<leader>u', ':UndotreeToggle <cr>', { silent = true, noremap = true, desc = 'Toggle undotree' })
+
 -- Telescope --
-map({ 'n', 'v' }, '<leader>tt', ':Telescope<CR>', { desc = 'Open Telescope' })
-map({ 'n', 'v' }, '<leader>fr', ':Telescope resume<CR>', { desc = 'Open last Telescope window', silent = true })
-map('n', '<leader>fw', '<cmd>Telescope live_grep<CR>', { desc = 'telescope live grep' })
-map('n', '<leader>fb', '<cmd>Telescope buffers<CR>', { desc = 'telescope find buffers' })
-map('n', '<leader>fh', '<cmd>Telescope help_tags<CR>', { desc = 'telescope help page' })
-map('n', '<leader>ma', '<cmd>Telescope marks<CR>', { desc = 'telescope find marks' })
-map('n', '<leader>fz', '<cmd>Telescope current_buffer_fuzzy_find<CR>', { desc = 'telescope find in current buffer' })
-
-map('n', '<leader>cm', '<cmd>Telescope git_commits<CR>', { desc = 'telescope git commits' })
-map('n', '<leader>gt', '<cmd>Telescope git_status<CR>', { desc = 'telescope git status' })
-
-map('n', '<leader>ff', '<cmd>Telescope find_files follow=true no_ignore=true hidden=true<CR>',
-  { desc = 'telescope find all files' })
-map("n", "<leader>tb", ":Telescope file_browser<CR>")
+map({ 'n' }, '<leader>tt', function() Snacks.picker() end, { silent = true, desc = 'Open snacks picker' })
 map({ "n", "v" }, "<leader>tc", ":Telescope neoclip<CR>", { desc = "Telescope Clipboard" })
 map({ "n", "v" }, "<leader>tm", ":Telescope macroscope<CR>", { desc = "Telescope Macros" })
-
--- Search with Telescope
-function vim.getVisualSelection()
-  vim.cmd 'noau normal! "vy"'
-  local text = vim.fn.getreg 'v'
-  vim.fn.setreg('v', {})
-
-  text = string.gsub(text, '\n', '')
-  if #text > 0 then
-    return text
-  else
-    return ''
-  end
-end
-
-local tb = require 'telescope.builtin'
-local opts = { noremap = true, silent = true }
-
-map('n', '<leader>g', ':Telescope current_buffer_fuzzy_find<cr>', opts)
-map('v', '<leader>g', function()
-  local text = vim.getVisualSelection()
-  tb.current_buffer_fuzzy_find { default_text = text }
-end, opts)
-
-map('n', '<leader>G', ':Telescope live_grep<cr>', opts)
-map('v', '<leader>G', function()
-  local text = vim.getVisualSelection()
-  tb.live_grep { default_text = text }
-end, opts)
--- Search with Telescope end
+-- -- Search with Telescope
 
 -- Comment
 map('n', '<leader>/', 'gcc', { desc = 'toggle comment', remap = true })
 map('v', '<leader>/', 'gc', { desc = 'toggle comment', remap = true })
 
--- nvimtree
-map('n', '<C-n>', '<cmd>NvimTreeToggle<CR>', { desc = 'nvimtree toggle window' })
-map('n', '<leader>e', '<cmd>NvimTreeFocus<CR>', { desc = 'nvimtree focus window' })
-
 map('n', '<leader>fm', function()
-  require('conform').format { lsp_fallback = true }
+  require('conform').format { lsp_fallback = true, async = false, }
 end, { desc = 'general format file' })
 
 -- Trouble
@@ -120,7 +77,7 @@ map({ 'v', 'n' }, '<leader>xx', '<cmd>Trouble diagnostics toggle<cr>', {
   desc = 'Diagnostics (Trouble)',
 })
 map({ 'v', 'n' }, '<leader>xX', '<cmd>Trouble diagnostics toggle filter.buf=0<cr>', {
- desc = 'Buffer Diagnostics (Trouble)',
+  desc = 'Buffer Diagnostics (Trouble)',
 })
 map({ 'v', 'n' }, '<leader>cs', '<cmd>Trouble symbols toggle focus=false<cr>', {
   desc = 'Symbols (Trouble)',
