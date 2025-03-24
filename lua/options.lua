@@ -54,6 +54,7 @@ o.updatetime = 250
 opt.termguicolors = true
 
 o.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"
+vim.lsp.set_log_level("off")
 
 if g.neovide then
   g.neovide_cursor_animation_length = 0
