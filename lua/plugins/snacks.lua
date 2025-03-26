@@ -48,15 +48,16 @@ return {
   },
   keys = {
     -- Top Pickers & Explorer
-    { "<leader><space>", function() Snacks.picker.smart() end,     desc = "Smart Find Files" },
-    { "<leader>,",       function() Snacks.picker.buffers() end,   desc = "Buffers" },
-    { "<leader>j",       function() Snacks.picker.grep() end,      desc = "Grep" },
-    { '<leader>tt',      function() Snacks.picker() end,           desc = 'Open snacks picker' },
-    { "<leader>fb",      function() Snacks.picker.buffers() end,   desc = "Buffers" },
-    { "<leader>fr",      function() Snacks.picker.recent() end,    desc = "Recent" },
-    { "<leader>G",       function() Snacks.picker.grep_word() end, desc = "Visual selection or word", mode = { "n", "x" } },
+    { "<leader><space>", function() Snacks.picker.smart() end,           desc = "Smart Find Files" },
+    { "<leader>,",       function() Snacks.picker.buffers() end,         desc = "Buffers" },
+    { "<leader>j",       function() Snacks.picker.grep() end,            desc = "Grep" },
+    { '<leader>tt',      function() Snacks.picker() end,                 desc = 'Open snacks picker' },
+    { "<leader>fb",      function() Snacks.picker.buffers() end,         desc = "Buffers" },
+    { "<leader>fr",      function() Snacks.picker.recent() end,          desc = "Recent" },
+    { "<leader>G",       function() Snacks.picker.grep_word() end,       desc = "Visual selection or word", mode = { "n", "x" } },
+    { '<leader>s/',      function() Snacks.picker.search_history() end,  desc = "Search History" },
+    { "<leader>:",       function() Snacks.picker.command_history() end, desc = "Command History" },
 
-    -- { "<leader>:",       function() Snacks.picker.command_history() end,                         desc = "Command History" },
     -- { "<leader>n",       function() Snacks.picker.notifications() end,                           desc = "Notification History" },
     -- { "<leader>e",       function() Snacks.explorer() end,                                       desc = "File Explorer" },
     -- find

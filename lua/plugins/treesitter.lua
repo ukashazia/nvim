@@ -39,7 +39,10 @@ return {
   },
   {
     'nvim-treesitter/nvim-treesitter-context',
-    opts = {},
+    opts = {
+      max_lines = 5,
+      trim_scope = 'outer'
+    },
     event = 'BufRead'
   },
   {
