@@ -42,6 +42,7 @@ o.cursorlineopt = "line,number"
 
 o.smartcase = true
 o.mouse = "a"
+o.ignorecase = true
 
 o.signcolumn = "yes"
 o.splitbelow = true
@@ -57,11 +58,10 @@ o.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,term
 vim.lsp.set_log_level("off")
 vim.o.winborder = 'rounded'
 vim.diagnostic.config({
-  virtual_text = false,
-  virtual_lines = true,
+  virtual_text = true,
+  virtual_lines = false,
   severity_sort = true,
 })
-
 
 if g.neovide then
   g.neovide_cursor_animation_length = 0
