@@ -118,7 +118,8 @@ return {
       -- elsewhere in your config, without redefining it, due to `opts_extend`
       sources = {
         -- add lazydev to your completion providers
-        default = { "lazydev", "lsp", "path", "snippets", "buffer", "avante" },
+        -- default = { "lazydev", "lsp", "path", "snippets", "buffer", "avante" },
+        default = { "lazydev", "lsp", "path", "snippets", "buffer" },
         providers = {
           lazydev = {
             name = "LazyDev",
