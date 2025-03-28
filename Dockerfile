@@ -5,7 +5,6 @@ RUN pacman -Syu --noconfirm \
   curl \
   git \
   jq \
-  neovim \
   tmux \
   zsh \
   ripgrep \
@@ -23,6 +22,10 @@ RUN pacman -Syu --noconfirm \
   cargo
 
 WORKDIR /workdir
+
+RUN curl -sSL https://github.com/neovim/neovim/releases/download/nightly/nvim-linux-x86_64.tar.gz -o /tmp/nvim/nvim-nightly.tar.gz
+RUN tar -xzf /tmp/nvim/nvim-nightly.tar.gz -C /tmp/nvim
+RUN cp -r /tmp/nvim/nvim-linux-x86_64/* /usr/local
 
 COPY . /root/.config/nvim
 
