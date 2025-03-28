@@ -26,7 +26,8 @@ WORKDIR /workdir
 RUN mkdir -p /tmp/nvim && \
   curl -sSL https://github.com/neovim/neovim/releases/download/nightly/nvim-linux-x86_64.tar.gz -o /tmp/nvim/nvim-nightly.tar.gz && \
   tar -xzf /tmp/nvim/nvim-nightly.tar.gz -C /tmp/nvim && \
-  cp -r /tmp/nvim/nvim-linux-x86_64/* /usr/local
+  rm /usr/local/share/man && \
+  cp -r /tmp/nvim/nvim-linux-x86_64/* /usr/local/
 
 COPY . /root/.config/nvim
 
