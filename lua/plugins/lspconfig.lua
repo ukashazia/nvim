@@ -54,11 +54,18 @@ local function lsp_setup()
     },
   }
 
-  lspconfig.lexical.setup {
+  -- lspconfig.lexical.setup {
+  --   on_attach = nvlsp.on_attach,
+  --   on_init = nvlsp.on_init,
+  --   capabilities = nvlsp.capabilities,
+  --   cmd = { 'lexical' },
+  -- }
+
+  lspconfig.elixirls.setup {
     on_attach = nvlsp.on_attach,
     on_init = nvlsp.on_init,
     capabilities = nvlsp.capabilities,
-    cmd = { 'lexical' },
+    cmd = { 'elixir-ls' },
   }
 
   lspconfig.harper_ls.setup {
