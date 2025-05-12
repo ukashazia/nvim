@@ -1,11 +1,11 @@
 local M = {}
 
 M.servers = {
+  'nil_ls',
   'harper_ls',
   'ansiblels',
   'arduino_language_server',
   'jinja_lsp',
-  -- 'lexical',
   'elixirls',
   'cssls',
   'docker_compose_language_service',
@@ -24,7 +24,6 @@ M.servers = {
   'rust_analyzer',
   'gopls',
   'cmake',
-  'ember',
   'gradle_ls',
   'html',
   'biome',

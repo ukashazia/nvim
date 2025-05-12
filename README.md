@@ -18,10 +18,11 @@ docker exec -it nvim nvim
 - lua
 
 ### Lsps in the container
+- 'nil_ls'
 - 'ansiblels'
 - 'arduino_language_server'
 - 'jinja_lsp'
-- 'lexical'
+- 'elixir_ls'
 - 'cssls'
 - 'docker_compose_language_service'
 - 'dockerls'
@@ -39,7 +40,6 @@ docker exec -it nvim nvim
 - 'rust_analyzer'
 - 'gopls'
 - 'cmake'
-- 'ember'
 - 'gradle_ls'
 - 'html'
 - 'biome'
