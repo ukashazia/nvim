@@ -64,11 +64,7 @@ map({ "n", "v" }, "<leader>tc", ":Telescope neoclip<CR>", { desc = "Telescope Cl
 map({ "n", "v" }, "<leader>tm", ":Telescope macroscope<CR>", { desc = "Telescope Macros" })
 -- -- Search with Telescope
 
--- Comment
-map('n', '<leader>/', 'gcc', { desc = 'toggle comment', remap = true })
-map('v', '<leader>/', 'gc', { desc = 'toggle comment', remap = true })
-
-map('n', '<leader>fm', function()
+map('n', '<leader>as', function()
   require('conform').format { lsp_fallback = true, async = false, }
 end, { desc = 'general format file' })
 

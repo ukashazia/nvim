@@ -48,7 +48,8 @@ return {
   },
   keys = {
     -- Top Pickers & Explorer
-    { "<leader><space>", function() Snacks.picker.smart() end,           desc = "Smart Find Files" },
+    { "<leader>/", function() Snacks.picker.smart() end,           desc = "Smart Find Files" },
+    { "<leader><space>", function() Snacks.picker.files() end,           desc = "Find Files" },
     { "<leader>,",       function() Snacks.picker.buffers() end,         desc = "Buffers" },
     { "<leader>j",       function() Snacks.picker.grep() end,            desc = "Grep" },
     { '<leader>tt',      function() Snacks.picker() end,                 desc = 'Open snacks picker' },
