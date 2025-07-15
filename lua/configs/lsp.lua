@@ -1,7 +1,7 @@
 local M = {}
 
 M.servers = {
-  'nil_ls',
+  'ruff',
   'harper_ls',
   'ansiblels',
   'arduino_language_server',

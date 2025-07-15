@@ -23,7 +23,7 @@ return {
     require('neoclip').setup
     {
       history = 50000,
-      enable_persistent_history = true,
+      enable_persistent_history = false,
       length_limit = 1048576,
       continuous_sync = true,
       db_path = vim.fn.stdpath("data") .. "/databases/neoclip.sqlite3",
@@ -62,7 +62,7 @@ return {
             paste_behind = '<c-k>',
             replay = '<c-q>', -- replay a macro
             delete = '<c-d>', -- delete an entry
-            edit = '<c-e>', -- edit an entry
+            edit = '<c-e>',   -- edit an entry
             custom = {},
           },
           n = {
