@@ -1,12 +1,25 @@
 return {
   {
     'nvim-treesitter/nvim-treesitter',
+    branch = 'master',
+    lazy = false,
+    build = ":TSUpdate",
     config = function()
       require('nvim-treesitter.configs').setup({
+        -- install_dir = vim.fn.stdpath('data') .. '/treesitter',
         ensure_installed = 'all',
         auto_install = true,
         highlight = { enable = true, use_languagetree = true },
-        indent = { enable = false },
+        -- incremental_selection = {
+        --   enable = true,
+        --   keymaps = {
+        --     init_selection = "gnn", -- set to `false` to disable one of the mappings
+        --     node_incremental = "grn",
+        --     scope_incremental = "grc",
+        --     node_decremental = "grm",
+        --   },
+        -- },
+        indent = { enable = true },
         ignore_install = {},
         modules = {},
         sync_install = false,
@@ -39,6 +52,7 @@ return {
   },
   {
     'nvim-treesitter/nvim-treesitter-context',
+    branch = 'master',
     opts = {
       max_lines = 5,
       trim_scope = 'outer'
@@ -47,29 +61,10 @@ return {
   },
   {
     "nvim-treesitter/nvim-treesitter-textobjects",
-  },
-  {
-    "windwp/nvim-ts-autotag",
-    config = function()
-      require('nvim-ts-autotag').setup({
-        opts = {
-          -- Defaults
-          enable_close = true,          -- Auto close tags
-          enable_rename = true,         -- Auto rename pairs of tags
-          enable_close_on_slash = false -- Auto close on trailing </
-        },
-        -- Also override individual filetype configs, these take priority.
-        -- Empty by default, useful if one of the "opts" global settings
-        -- doesn't work well in a specific filetype
-        per_filetype = {
-          -- ["html"] = {
-          --   enable_close = false
-          -- }
-        }
-      })
-    end,
+    branch = 'master'
   },
   {
     'JoosepAlviste/nvim-ts-context-commentstring',
+    enabled = false
   }
 }

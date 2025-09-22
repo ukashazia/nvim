@@ -1,6 +1,5 @@
 return {
   'stevearc/conform.nvim',
-  lazy = false,
   opts = {
     lsp_format = "prefer",
     formatters_by_ft = {
