@@ -1,4 +1,5 @@
 return {
+  enabled = false,
   "sourcegraph/sg.nvim",
   opts = {},
   config = function()

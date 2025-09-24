@@ -2,19 +2,20 @@ local lsp_configuration = require "configs.lsp"
 local servers = lsp_configuration.servers
 
 local function lsp_setup()
-  local lspconfig = require 'lspconfig'
+  local lspconfig = vim.lsp.config
 
   local nvlsp = require 'configs.nvlsp'
+  vim.lsp.enable(servers)
 
   for _, server in ipairs(servers) do
-    lspconfig[server].setup {
+    lspconfig(server, {
       on_attach = nvlsp.on_attach,
       on_init = nvlsp.on_init,
       capabilities = nvlsp.capabilities,
-    }
+    })
   end
 
-  lspconfig.lua_ls.setup {
+  lspconfig('lua_ls', {
     on_attach = nvlsp.on_attach,
     on_init = nvlsp.on_init,
     capabilities = nvlsp.capabilities,
@@ -25,8 +26,8 @@ local function lsp_setup()
         },
       },
     },
-  }
-  lspconfig.tailwindcss.setup {
+  })
+  lspconfig('tailwindcss', {
     on_attach = nvlsp.on_attach,
     on_init = nvlsp.on_init,
     capabilities = nvlsp.capabilities,
@@ -52,23 +53,23 @@ local function lsp_setup()
         heex = 'html-eex',
       },
     },
-  }
+  })
 
-  -- lspconfig.lexical.setup {
+  -- lspconfig('lexical', {
   --   on_attach = nvlsp.on_attach,
   --   on_init = nvlsp.on_init,
   --   capabilities = nvlsp.capabilities,
   --   cmd = { 'lexical' },
-  -- }
+  -- })
 
-  lspconfig.elixirls.setup {
+  lspconfig('elixirls', {
     on_attach = nvlsp.on_attach,
     on_init = nvlsp.on_init,
     capabilities = nvlsp.capabilities,
     cmd = { 'elixir-ls' },
-  }
+  })
 
-  lspconfig.harper_ls.setup {
+  lspconfig('harper_ls', {
     on_attach = nvlsp.on_attach,
     on_init = nvlsp.on_init,
     capabilities = nvlsp.capabilities,
@@ -99,9 +100,9 @@ local function lsp_setup()
         isolateEnglish = false
       }
     }
-  }
+  })
 
-  lspconfig.sourcekit.setup {
+  lspconfig('sourcekit', {
     on_attach = nvlsp.on_attach,
     on_init = nvlsp.on_init,
     cmd = {
@@ -114,18 +115,18 @@ local function lsp_setup()
         },
       },
     },
-  }
+  })
 end
 
 return {
   {
     "williamboman/mason-lspconfig.nvim",
-    lazy = false,
     config = function()
       require('mason-lspconfig').setup {
         ensure_installed = servers,
         automatic_installation = true,
         allow_headless = true,
+        automatic_enable = false,
       }
     end,
     dependencies = {
@@ -136,7 +137,6 @@ return {
 
   {
     'neovim/nvim-lspconfig',
-    lazy = false,
     config = function()
       lsp_setup()
     end,
