@@ -116,6 +116,22 @@ local function lsp_setup()
       },
     },
   })
+
+  lspconfig('gopls', {
+    settings = {
+      gopls = {
+        analyses = {
+          unusedparams = true,
+        },
+        staticcheck = true,
+        gofumpt = true,
+        codelenses = {
+          generate = true,
+          gc_details = true,
+        },
+      },
+    },
+  })
 end
 
 return {

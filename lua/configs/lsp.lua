@@ -23,6 +23,8 @@ M.servers = {
   'eslint',
   'rust_analyzer',
   'gopls',
+  'goimports',
+  'golangci_lint_ls',
   'cmake',
   'gradle_ls',
   'html',

@@ -80,7 +80,8 @@ map({ "n", "v" }, "<leader>tm", ":Telescope macroscope<CR>", { desc = "Telescope
 -- -- Search with Telescope
 
 map('n', '<leader>as', function()
-  require('conform').format { lsp_fallback = true, async = false, }
+  -- vim.lsp.buf.format()
+  require('conform').format { async = false, }
 end, { desc = 'general format file' })
 
 -- Trouble
