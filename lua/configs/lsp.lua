@@ -30,17 +30,18 @@ M.servers = {
   'html',
   'biome',
   'taplo',
-  'zls'
+  'zls',
 }
 
 M.InstallLsps = function()
-  local is_headless = require "utils.core".is_headless()
+  local is_headless = require('utils.core').is_headless()
   if is_headless then
-    require "utils.cmd" {
-      cmd = "LspInstall " .. table.concat(M.servers, " "),
+    require 'utils.cmd' {
+      cmd = 'LspInstall ' .. table.concat(M.servers, ' '),
       callback = function()
+        
         -- vim.cmd("qa")
-      end
+      end,
     }
   end
 end

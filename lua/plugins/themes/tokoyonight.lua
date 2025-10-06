@@ -1,10 +1,10 @@
 return {
-  "folke/tokyonight.nvim",
+  'folke/tokyonight.nvim',
   priority = 2000,
   opts = {},
   config = function()
-    require("tokyonight").setup {
-      style = "night", -- Options: "storm", "night", "moon"
+    require('tokyonight').setup {
+      style = 'night', -- Options: "storm", "night", "moon"
       transparent = false, -- Enable transparent background
       terminal_colors = true, -- Use colors in Neovim terminal
       styles = {
@@ -12,9 +12,9 @@ return {
         keywords = { italic = true },
         functions = {},
         variables = {},
-        sidebars = "dark", -- Set sidebars to darker background
+        sidebars = 'dark', -- Set sidebars to darker background
       },
-      sidebars = { "qf", "help" }, -- Sidebar windows for darker background
+      sidebars = { 'qf', 'help' }, -- Sidebar windows for darker background
     }
   end,
 }

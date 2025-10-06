@@ -7,7 +7,7 @@ local file_picker_config = {
 }
 
 return {
-  "folke/snacks.nvim",
+  'folke/snacks.nvim',
   priority = 1000,
   ---@type snacks.Config
   opts = {
@@ -26,15 +26,14 @@ return {
       --- * up_down: animate up or down based on the cursor position
       ---@field style? "out"|"up_down"|"down"|"up"
       animate = {
-        enabled = vim.fn.has("nvim-0.10") == 1,
-        style = "out",
-        easing = "linear",
+        enabled = vim.fn.has 'nvim-0.10' == 1,
+        style = 'out',
+        easing = 'linear',
         duration = {
-          step = 20,  -- ms per step
+          step = 20, -- ms per step
           total = 50, -- maximum duration
         },
       },
-
     },
     input = { enabled = true },
     notifier = {
@@ -50,21 +49,82 @@ return {
     styles = {
       notification = {
         -- wo = { wrap = true } -- Wrap notifications
-      }
-    }
+      },
+    },
   },
   keys = {
     -- Top Pickers & Explorer
-    { "<leader>/",       function() Snacks.picker.smart() end,                   desc = "Smart Find Files" },
-    { "<leader><space>", function() Snacks.picker.files(file_picker_config) end, desc = "Find Files" },
-    { "<leader>,",       function() Snacks.picker.buffers() end,                 desc = "Buffers" },
-    { "<leader>j",       function() Snacks.picker.grep() end,                    desc = "Grep" },
-    { '<leader>tt',      function() Snacks.picker() end,                         desc = 'Open snacks picker' },
-    { "<leader>fb",      function() Snacks.picker.buffers() end,                 desc = "Buffers" },
-    { "<leader>fr",      function() Snacks.picker.resume() end,                  desc = "Recent" },
-    { "<leader>G",       function() Snacks.picker.grep_word() end,               desc = "Visual selection or word", mode = { "n", "x" } },
-    { '<leader>s/',      function() Snacks.picker.search_history() end,          desc = "Search History" },
-    { "<leader>:",       function() Snacks.picker.command_history() end,         desc = "Command History" },
+    {
+      '<leader>/',
+      function()
+        Snacks.picker.smart()
+      end,
+      desc = 'Smart Find Files',
+    },
+    {
+      '<leader><space>',
+      function()
+        Snacks.picker.files(file_picker_config)
+      end,
+      desc = 'Find Files',
+    },
+    {
+      '<leader>,',
+      function()
+        Snacks.picker.buffers()
+      end,
+      desc = 'Buffers',
+    },
+    {
+      '<leader>j',
+      function()
+        Snacks.picker.grep()
+      end,
+      desc = 'Grep',
+    },
+    {
+      '<leader>tt',
+      function()
+        Snacks.picker()
+      end,
+      desc = 'Open snacks picker',
+    },
+    {
+      '<leader>fb',
+      function()
+        Snacks.picker.buffers()
+      end,
+      desc = 'Buffers',
+    },
+    {
+      '<leader>fr',
+      function()
+        Snacks.picker.resume()
+      end,
+      desc = 'Recent',
+    },
+    {
+      '<leader>G',
+      function()
+        Snacks.picker.grep_word()
+      end,
+      desc = 'Visual selection or word',
+      mode = { 'n', 'x' },
+    },
+    {
+      '<leader>s/',
+      function()
+        Snacks.picker.search_history()
+      end,
+      desc = 'Search History',
+    },
+    {
+      '<leader>:',
+      function()
+        Snacks.picker.command_history()
+      end,
+      desc = 'Command History',
+    },
 
     -- { "<leader>n",       function() Snacks.picker.notifications() end,                           desc = "Notification History" },
     -- { "<leader>e",       function() Snacks.explorer() end,                                       desc = "File Explorer" },
@@ -152,8 +212,8 @@ return {
     -- }
   },
   init = function()
-    vim.api.nvim_create_autocmd("User", {
-      pattern = "VeryLazy",
+    vim.api.nvim_create_autocmd('User', {
+      pattern = 'VeryLazy',
       callback = function()
         -- Setup some globals for debugging (lazy-loaded)
         _G.dd = function(...)

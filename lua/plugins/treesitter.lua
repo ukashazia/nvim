@@ -3,9 +3,9 @@ return {
     'nvim-treesitter/nvim-treesitter',
     branch = 'master',
     lazy = false,
-    build = ":TSUpdate",
+    build = ':TSUpdate',
     config = function()
-      require('nvim-treesitter.configs').setup({
+      require('nvim-treesitter.configs').setup {
         -- install_dir = vim.fn.stdpath('data') .. '/treesitter',
         ensure_installed = 'all',
         auto_install = true,
@@ -30,11 +30,11 @@ return {
             lookahead = true,
 
             keymaps = {
-              ["af"] = "@function.outer",
-              ["if"] = "@function.inner",
-              ["ac"] = "@class.outer",
-              ["ic"] = { query = "@class.inner", desc = "Select inner part of a class region" },
-              ["as"] = { query = "@local.scope", query_group = "locals", desc = "Select language scope" },
+              ['af'] = '@function.outer',
+              ['if'] = '@function.inner',
+              ['ac'] = '@class.outer',
+              ['ic'] = { query = '@class.inner', desc = 'Select inner part of a class region' },
+              ['as'] = { query = '@local.scope', query_group = 'locals', desc = 'Select language scope' },
             },
             selection_modes = {
               ['@parameter.outer'] = 'v',
@@ -44,7 +44,7 @@ return {
             include_surrounding_whitespace = true,
           },
         },
-      })
+      }
 
       -- vim.wo.foldmethod = 'expr'
       -- vim.wo.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
@@ -55,16 +55,16 @@ return {
     branch = 'master',
     opts = {
       max_lines = 5,
-      trim_scope = 'outer'
+      trim_scope = 'outer',
     },
-    event = 'BufRead'
+    event = 'BufRead',
   },
   {
-    "nvim-treesitter/nvim-treesitter-textobjects",
-    branch = 'master'
+    'nvim-treesitter/nvim-treesitter-textobjects',
+    branch = 'master',
   },
   {
     'JoosepAlviste/nvim-ts-context-commentstring',
-    enabled = false
-  }
+    enabled = false,
+  },
 }

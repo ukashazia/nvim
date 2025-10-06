@@ -12,21 +12,20 @@ local function all(tbl, check)
 end
 
 return {
-  "AckslD/nvim-neoclip.lua",
-  event = "BufReadPre",
+  'AckslD/nvim-neoclip.lua',
+  event = 'BufReadPre',
   dependencies = {
     -- you'll need at least one of these
     { 'nvim-telescope/telescope.nvim' },
     -- {'ibhagwan/fzf-lua'},
   },
   config = function()
-    require('neoclip').setup
-    {
+    require('neoclip').setup {
       history = 50000,
       enable_persistent_history = false,
       length_limit = 1048576,
       continuous_sync = true,
-      db_path = vim.fn.stdpath("data") .. "/databases/neoclip.sqlite3",
+      db_path = vim.fn.stdpath 'data' .. '/databases/neoclip.sqlite3',
       filter = function(data)
         return not all(data.event.regcontents, is_whitespace)
       end,
@@ -62,7 +61,7 @@ return {
             paste_behind = '<c-k>',
             replay = '<c-q>', -- replay a macro
             delete = '<c-d>', -- delete an entry
-            edit = '<c-e>',   -- edit an entry
+            edit = '<c-e>', -- edit an entry
             custom = {},
           },
           n = {

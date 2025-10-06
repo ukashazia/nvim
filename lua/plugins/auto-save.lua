@@ -4,7 +4,7 @@ return {
   config = function()
     require('auto-save').setup {
       enabled = true,
-      events = { "FocusLost", "BufLeave", "TabLeave" },
+      events = { 'FocusLost', 'BufLeave', 'TabLeave' },
       conditions = {
         exists = true,
         filetype_is_not = {},
@@ -15,9 +15,9 @@ return {
         local utils = require 'auto-save.utils.data'
 
         if
-            fn.getbufvar(buf, '&modifiable') == 1
-            -- change here is adding harpoon file type to exclusion list
-            and utils.not_in(fn.getbufvar(buf, '&filetype'), { 'harpoon', 'oil' })
+          fn.getbufvar(buf, '&modifiable') == 1
+          -- change here is adding harpoon file type to exclusion list
+          and utils.not_in(fn.getbufvar(buf, '&filetype'), { 'harpoon', 'oil' })
         then
           return true
         end

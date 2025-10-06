@@ -15,33 +15,46 @@ map('n', '<Esc>', '<cmd>noh<CR>', { desc = 'general clear highlights' })
 map({ 'n' }, '<leader>bc', ':let @+ = expand("%")<cr>', { desc = 'Copy buffer path (relative)' })
 map({ 'n' }, '<leader>bca', ':let @+ = expand("%:p")<cr>', { desc = 'Copy buffer path (absolute)' })
 
-map({ "v", "n" }, "<S-P>", '"+p', { desc = 'Paste from system clipboard' })
-map({ "v" }, "<S-Y>", '"+y', { desc = 'Copy to system clipboard' })
-map({ "n" }, "<S-Y>", '"+yy', { desc = 'Copy to system clipboard' })
+map({ 'v', 'n' }, '<S-P>', '"+p', { desc = 'Paste from system clipboard' })
+map({ 'v' }, '<S-Y>', '"+y', { desc = 'Copy to system clipboard' })
+map({ 'n' }, '<S-Y>', '"+yy', { desc = 'Copy to system clipboard' })
 
-map({ "v", "n" }, "<leader>yb", ':%y<CR>', { desc = 'Copy whole buffer' })
-map({ "v", "n" }, "<leader>ybs", ':%y+<CR>', { desc = "Copy whole buffer into system's clipboard" })
+map({ 'v', 'n' }, '<leader>yb', ':%y<CR>', { desc = 'Copy whole buffer' })
+map({ 'v', 'n' }, '<leader>ybs', ':%y+<CR>', { desc = "Copy whole buffer into system's clipboard" })
 
-map("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>", { noremap = true, silent = true, desc = "Go to declaration" })
-map("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", { noremap = true, silent = true, desc = "Go to definition" })
-map("n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>", { noremap = true, silent = true, desc = "Go to usage" })
+map('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>', { noremap = true, silent = true, desc = 'Go to declaration' })
+map('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', { noremap = true, silent = true, desc = 'Go to definition' })
+map('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', { noremap = true, silent = true, desc = 'Go to usage' })
 
-map("n", "<C-S-H>", "<cmd>tabprevious<CR>", { noremap = true, silent = true, desc = "Go to previous tab" })
-map("n", "<C-S-L>", "<cmd>tabnext<CR>", { noremap = true, silent = true, desc = "Go to next tab" })
-
+map('n', '<C-S-H>', '<cmd>tabprevious<CR>', { noremap = true, silent = true, desc = 'Go to previous tab' })
+map('n', '<C-S-L>', '<cmd>tabnext<CR>', { noremap = true, silent = true, desc = 'Go to next tab' })
 
 -- binds for harpoon
 
-map("n", "<leader>a", function() harpoon:list():add() end)
+map('n', '<leader>a', function()
+  harpoon:list():add()
+end)
 
-map("n", "<C-h>", function() harpoon:list():select(1) end)
-map("n", "<C-t>", function() harpoon:list():select(2) end)
-map("n", "<C-n>", function() harpoon:list():select(3) end)
-map("n", "<C-s>", function() harpoon:list():select(4) end)
+map('n', '<C-h>', function()
+  harpoon:list():select(1)
+end)
+map('n', '<C-t>', function()
+  harpoon:list():select(2)
+end)
+map('n', '<C-n>', function()
+  harpoon:list():select(3)
+end)
+map('n', '<C-s>', function()
+  harpoon:list():select(4)
+end)
 
 -- Toggle previous & next buffers stored within Harpoon list
-map("n", "<C-S-P>", function() harpoon:list():prev() end)
-map("n", "<C-S-N>", function() harpoon:list():next() end)
+map('n', '<C-S-P>', function()
+  harpoon:list():prev()
+end)
+map('n', '<C-S-N>', function()
+  harpoon:list():next()
+end)
 
 map('n', '<leader>h', function()
   harpoon.ui:toggle_quick_menu(harpoon:list())
@@ -54,7 +67,7 @@ end, { desc = 'Add current buffer to harpoon' })
 -- GitHub Copilot
 map('n', '<leader>cpd', ':Copilot disable<cr>', { silent = true, noremap = true, desc = 'Disable Copilot' })
 map('n', '<leader>cpe', ':Copilot enable<cr>', { silent = true, noremap = true, desc = 'Enable Copilot' })
-api_map('i', '<Tab>', 'copilot#Accept("<Tab>")', { silent = true, expr = true })
+-- api_map('i', '<Tab>', 'copilot#Accept("<Tab>")', { silent = true, expr = true })
 
 -- ThePrimeagen
 map('n', '<C-d>', '<C-d>zz')
@@ -69,19 +82,21 @@ map('n', 'N', 'Nzzzv')
 map('n', 'G', 'Gzz')
 
 -- Paste without add stuff to register
-map("v", "<leader>p", [["_dP]])
+map('v', '<leader>p', [["_dP]])
 
 map('n', '<leader>u', ':UndotreeToggle <cr>', { silent = true, noremap = true, desc = 'Toggle undotree' })
 
 -- Telescope --
-map({ 'n' }, '<leader>tt', function() Snacks.picker() end, { silent = true, desc = 'Open snacks picker' })
-map({ "n", "v" }, "<leader>tc", ":Telescope neoclip<CR>", { desc = "Telescope Clipboard" })
-map({ "n", "v" }, "<leader>tm", ":Telescope macroscope<CR>", { desc = "Telescope Macros" })
+map({ 'n' }, '<leader>tt', function()
+  Snacks.picker()
+end, { silent = true, desc = 'Open snacks picker' })
+map({ 'n', 'v' }, '<leader>tc', ':Telescope neoclip<CR>', { desc = 'Telescope Clipboard' })
+map({ 'n', 'v' }, '<leader>tm', ':Telescope macroscope<CR>', { desc = 'Telescope Macros' })
 -- -- Search with Telescope
 
 map('n', '<leader>as', function()
   -- vim.lsp.buf.format()
-  require('conform').format { async = false, }
+  require('conform').format { async = false }
 end, { desc = 'general format file' })
 
 -- Trouble

@@ -1,5 +1,5 @@
 return {
-  { "Kaiser-Yang/blink-cmp-avante", enabled = false },
+  { 'Kaiser-Yang/blink-cmp-avante', enabled = false },
   {
     'saghen/blink.cmp',
     -- optional: provides snippets for the snippet source
@@ -22,7 +22,6 @@ return {
       keymap = {
         preset = 'none',
 
-
         ['<C-k>'] = { 'select_prev', 'fallback' },
         ['<C-j>'] = { 'select_next', 'fallback' },
         ['<C-l>'] = { 'select_and_accept', 'fallback' },
@@ -34,12 +33,16 @@ return {
         ['<C-f>'] = { 'scroll_documentation_up', 'fallback' },
 
         -- -- show with a list of providers
-        ['<C-space>'] = { function(cmp) cmp.show({ providers = { 'snippets' } }) end },
+        ['<C-space>'] = {
+          function(cmp)
+            cmp.show { providers = { 'snippets' } }
+          end,
+        },
       },
 
       cmdline = {
         keymap = {
-          preset = "none",
+          preset = 'none',
           ['<C-k>'] = { 'select_prev', 'fallback' },
           ['<C-j>'] = { 'select_next', 'fallback' },
           ['<C-l>'] = { 'select_and_accept', 'fallback' },
@@ -51,7 +54,11 @@ return {
           ['<C-f>'] = { 'scroll_documentation_up', 'fallback' },
 
           -- -- show with a list of providers
-          ['<C-space>'] = { function(cmp) cmp.show({ providers = { 'snippets' } }) end },
+          ['<C-space>'] = {
+            function(cmp)
+              cmp.show { providers = { 'snippets' } }
+            end,
+          },
         },
         completion = { menu = { auto_show = true } },
       },
@@ -99,7 +106,7 @@ return {
         documentation = {
           auto_show = true,
           auto_show_delay_ms = 200,
-          window = { border = 'rounded' }
+          window = { border = 'rounded' },
         },
         ghost_text = { enabled = false },
       },
@@ -111,7 +118,7 @@ return {
         use_nvim_cmp_as_default = true,
         -- Set to 'mono' for 'Nerd Font Mono' or 'normal' for 'Nerd Font'
         -- Adjusts spacing to ensure icons are aligned
-        nerd_font_variant = 'mono'
+        nerd_font_variant = 'mono',
       },
 
       -- Default list of enabled providers defined so that you can extend it
@@ -119,11 +126,11 @@ return {
       sources = {
         -- add lazydev to your completion providers
         -- default = { "lazydev", "lsp", "path", "snippets", "buffer", "avante" },
-        default = { "lazydev", "lsp", "path", "snippets", "buffer" },
+        default = { 'lazydev', 'lsp', 'path', 'snippets', 'buffer' },
         providers = {
           lazydev = {
-            name = "LazyDev",
-            module = "lazydev.integrations.blink",
+            name = 'LazyDev',
+            module = 'lazydev.integrations.blink',
             -- make lazydev completions top priority (see `:h blink.cmp`)
             score_offset = 100,
           },
@@ -132,10 +139,11 @@ return {
             name = 'Avante',
             opts = {
               -- options for blink-cmp-avante
-            }
+            },
           },
         },
       },
     },
-    opts_extend = { "sources.default" }
-  } }
+    opts_extend = { 'sources.default' },
+  },
+}

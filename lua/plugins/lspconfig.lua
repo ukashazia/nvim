@@ -1,4 +1,4 @@
-local lsp_configuration = require "configs.lsp"
+local lsp_configuration = require 'configs.lsp'
 local servers = lsp_configuration.servers
 
 local function lsp_setup()
@@ -74,9 +74,9 @@ local function lsp_setup()
     on_init = nvlsp.on_init,
     capabilities = nvlsp.capabilities,
     settings = {
-      ["harper-ls"] = {
-        userDictPath = "",
-        fileDictPath = "",
+      ['harper-ls'] = {
+        userDictPath = '',
+        fileDictPath = '',
         linters = {
           SpellCheck = true,
           SpelledNumbers = false,
@@ -88,25 +88,25 @@ local function lsp_setup()
           RepeatedWords = false,
           Spaces = false,
           Matcher = true,
-          CorrectNumberSuffix = true
+          CorrectNumberSuffix = true,
         },
         codeActions = {
-          ForceStable = false
+          ForceStable = false,
         },
         markdown = {
-          IgnoreLinkTitle = false
+          IgnoreLinkTitle = false,
         },
-        diagnosticSeverity = "hint",
-        isolateEnglish = false
-      }
-    }
+        diagnosticSeverity = 'hint',
+        isolateEnglish = false,
+      },
+    },
   })
 
   lspconfig('sourcekit', {
     on_attach = nvlsp.on_attach,
     on_init = nvlsp.on_init,
     cmd = {
-      "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/sourcekit-lsp",
+      '/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/sourcekit-lsp',
     },
     capabilities = {
       workspace = {
@@ -136,7 +136,7 @@ end
 
 return {
   {
-    "williamboman/mason-lspconfig.nvim",
+    'williamboman/mason-lspconfig.nvim',
     config = function()
       require('mason-lspconfig').setup {
         ensure_installed = servers,
@@ -146,7 +146,7 @@ return {
       }
     end,
     dependencies = {
-      "williamboman/mason.nvim",
+      'williamboman/mason.nvim',
       'neovim/nvim-lspconfig',
     },
   },
@@ -159,10 +159,10 @@ return {
     opts = {
       inlay_hints = {
         enabled = true,
-      }
+      },
     },
     dependencies = {
-      "williamboman/mason.nvim",
-    }
+      'williamboman/mason.nvim',
+    },
   },
 }

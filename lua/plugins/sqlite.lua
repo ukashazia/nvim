@@ -1,4 +1,4 @@
 return {
-  "kkharji/sqlite.lua",
-  event = { "VimEnter" },
+  'kkharji/sqlite.lua',
+  event = { 'VimEnter' },
 }

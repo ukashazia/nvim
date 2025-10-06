@@ -1,9 +1,9 @@
 return {
   enabled = false,
-  "sourcegraph/sg.nvim",
+  'sourcegraph/sg.nvim',
   opts = {},
   config = function()
-    require("sg").setup({})
+    require('sg').setup {}
   end,
-  dependencies = { "nvim-lua/plenary.nvim", "nvim-telescope/telescope.nvim" },
+  dependencies = { 'nvim-lua/plenary.nvim', 'nvim-telescope/telescope.nvim' },
 }

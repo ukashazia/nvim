@@ -15,7 +15,7 @@ M = {
     local os = jit.os
 
     return string.lower(os)
-  end
+  end,
 }
 
 return M

@@ -1,13 +1,13 @@
 local int = 4
 return {
-  "ThePrimeagen/refactoring.nvim",
+  'ThePrimeagen/refactoring.nvim',
   dependencies = {
-    "nvim-lua/plenary.nvim",
-    "nvim-treesitter/nvim-treesitter",
+    'nvim-lua/plenary.nvim',
+    'nvim-treesitter/nvim-treesitter',
   },
   lazy = true,
   config = function()
-    require("refactoring").setup({
+    require('refactoring').setup {
       prompt_func_return_type = {
         go = false,
         java = false,
@@ -32,6 +32,6 @@ return {
       print_var_statements = {},
       show_success_message = false, -- shows a message with information about the refactor on success
       -- i.e. [Refactor] Inlined 3 variable occurrences
-    })
+    }
   end,
 }
