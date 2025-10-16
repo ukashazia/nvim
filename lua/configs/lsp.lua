@@ -2,6 +2,7 @@ local M = {}
 
 M.servers = {
   'gh_actions_ls',
+  -- 'copilot',
   'harper_ls',
   'ansiblels',
   'arduino_language_server',
@@ -15,7 +16,7 @@ M.servers = {
   'ts_ls',
   'jsonls',
   'jdtls',
-  'tailwindcss',
+  -- 'tailwindcss',
   'clangd',
   'yamlls',
   'helm_ls',
@@ -39,7 +40,7 @@ M.InstallLsps = function()
     require 'utils.cmd' {
       cmd = 'LspInstall ' .. table.concat(M.servers, ' '),
       callback = function()
-        
+
         -- vim.cmd("qa")
       end,
     }

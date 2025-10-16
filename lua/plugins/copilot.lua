@@ -1,8 +1,8 @@
 return {
+  enabled = false,
   'zbirenbaum/copilot.lua',
   cmd = 'Copilot',
   event = 'InsertEnter',
-  enabled = false,
 
   config = function()
     require('copilot').setup {

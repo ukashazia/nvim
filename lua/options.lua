@@ -70,3 +70,5 @@ if g.neovide then
   g.neovide_refresh_rate = 60
   o.guifont = 'JetBrainsMono Nerd Font Mono:h13'
 end
+
+-- vim.lsp.inline_completion.enable()
