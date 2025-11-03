@@ -13,7 +13,7 @@ end
 
 return {
   'AckslD/nvim-neoclip.lua',
-  event = 'BufReadPre',
+  keys = { { '<leader>tc', mode = 'n' } },
   dependencies = {
     -- you'll need at least one of these
     { 'nvim-telescope/telescope.nvim' },
@@ -61,7 +61,7 @@ return {
             paste_behind = '<c-k>',
             replay = '<c-q>', -- replay a macro
             delete = '<c-d>', -- delete an entry
-            edit = '<c-e>', -- edit an entry
+            edit = '<c-e>',   -- edit an entry
             custom = {},
           },
           n = {

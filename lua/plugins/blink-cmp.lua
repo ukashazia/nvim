@@ -1,6 +1,6 @@
 return {
-  { 'Kaiser-Yang/blink-cmp-avante', enabled = false },
   {
+    event = {'InsertEnter', 'CmdlineEnter'},
     'saghen/blink.cmp',
     -- optional: provides snippets for the snippet source
     dependencies = 'rafamadriz/friendly-snippets',
@@ -133,13 +133,6 @@ return {
             module = 'lazydev.integrations.blink',
             -- make lazydev completions top priority (see `:h blink.cmp`)
             score_offset = 100,
-          },
-          avante = {
-            module = 'blink-cmp-avante',
-            name = 'Avante',
-            opts = {
-              -- options for blink-cmp-avante
-            },
           },
         },
       },

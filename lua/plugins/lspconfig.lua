@@ -137,6 +137,7 @@ end
 return {
   {
     'williamboman/mason-lspconfig.nvim',
+    event = 'InsertEnter',
     config = function()
       require('mason-lspconfig').setup {
         ensure_installed = servers,
@@ -153,6 +154,7 @@ return {
 
   {
     'neovim/nvim-lspconfig',
+    event = 'InsertEnter',
     config = function()
       lsp_setup()
     end,

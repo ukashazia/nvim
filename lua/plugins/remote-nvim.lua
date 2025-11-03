@@ -1,4 +1,5 @@
 return {
+  enabled = false,
   'amitds1997/remote-nvim.nvim',
   version = '*', -- Pin to GitHub releases
   dependencies = {

@@ -1,6 +1,6 @@
 return {
   'Pocco81/auto-save.nvim',
-  event = 'BufRead',
+  event = 'InsertLeave',
   config = function()
     require('auto-save').setup {
       enabled = true,

@@ -55,7 +55,7 @@ o.updatetime = 250
 opt.termguicolors = true
 
 o.sessionoptions = 'blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions'
-vim.lsp.set_log_level 'off'
+vim.lsp.log.set_level('off')
 vim.o.winborder = 'rounded'
 vim.diagnostic.config {
   virtual_text = true,
@@ -65,6 +65,7 @@ vim.diagnostic.config {
 
 if g.neovide then
   g.neovide_cursor_animation_length = 0
+  g.neovide_scroll_animation_length = 0
   g.neovide_scale_factor = 1.0
   g.neovide_window_blurred = true
   g.neovide_refresh_rate = 60

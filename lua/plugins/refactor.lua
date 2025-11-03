@@ -1,11 +1,11 @@
-local int = 4
 return {
   'ThePrimeagen/refactoring.nvim',
   dependencies = {
     'nvim-lua/plenary.nvim',
     'nvim-treesitter/nvim-treesitter',
   },
-  lazy = true,
+  keys = { { '<leader>rn', mode = 'n' } },
+
   config = function()
     require('refactoring').setup {
       prompt_func_return_type = {

@@ -2,12 +2,13 @@ return {
   {
     'nvim-treesitter/nvim-treesitter',
     branch = 'master',
-    lazy = false,
+    lazy = true,
+    event = 'BufReadPost',
     build = ':TSUpdate',
     config = function()
       require('nvim-treesitter.configs').setup {
         -- install_dir = vim.fn.stdpath('data') .. '/treesitter',
-        ensure_installed = 'all',
+        -- ensure_installed = 'all',
         auto_install = true,
         highlight = { enable = true, use_languagetree = true },
         -- incremental_selection = {
@@ -57,14 +58,16 @@ return {
       max_lines = 5,
       trim_scope = 'outer',
     },
-    event = 'BufRead',
+    event = 'VeryLazy',
   },
   {
     'nvim-treesitter/nvim-treesitter-textobjects',
+    event = 'InsertEnter',
     branch = 'master',
   },
   {
     'JoosepAlviste/nvim-ts-context-commentstring',
+    event = 'InsertEnter',
     enabled = false,
   },
 }

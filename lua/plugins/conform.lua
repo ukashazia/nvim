@@ -2,6 +2,7 @@ return {
   'stevearc/conform.nvim',
   event = { 'BufWritePre' },
   cmd = { 'ConformInfo' },
+  keys = { { '<leader>as', mode = 'n' } },
   -- This will provide type hinting with LuaLS
   ---@module "conform"
   ---@type conform.setupOpts
