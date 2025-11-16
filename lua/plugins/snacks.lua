@@ -1,14 +1,15 @@
 local file_picker_config = {
   hidden = true,
-  ignored = false,
-  exclude = {
-    '.*',
-  },
+  ignored = true,
+}
+
+local grep_picker_config = {
+  hidden = true,
+  ignored = true,
 }
 
 return {
   'folke/snacks.nvim',
-  lazy = false,
   priority = 1000,
   ---@type snacks.Config
   opts = {
@@ -41,7 +42,10 @@ return {
       enabled = false,
       timeout = 3000,
     },
-    picker = { enabled = true },
+    picker = { enabled = true,
+      files = file_picker_config,
+      grep = grep_picker_config,
+    },
     quickfile = { enabled = true },
     scope = { enabled = true },
     scroll = { enabled = false },
@@ -65,7 +69,7 @@ return {
     {
       '<leader><space>',
       function()
-        Snacks.picker.files(file_picker_config)
+        Snacks.picker.files()
       end,
       desc = 'Find Files',
     },
