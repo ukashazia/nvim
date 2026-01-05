@@ -1,21 +1,30 @@
 local file_picker_config = {
   hidden = true,
   ignored = true,
-}
-
-local grep_picker_config = {
-  hidden = true,
-  ignored = true,
+  exclude = {
+    '**/.git/**',
+    '**/.elixir-tools/**',
+    '**/.idea/*',
+    '**/.vscode/*',
+    '**/_build/*',
+    '**/node_modules/*',
+    '**/*.lock*',
+    '**/*-lock*',
+    '**/.lexical*',
+    '*elixir_ls*',
+    '**/deps/**',
+  },
 }
 
 return {
   'folke/snacks.nvim',
+  lazy = false,
   priority = 1000,
   ---@type snacks.Config
   opts = {
     bigfile = { enabled = true },
-    dashboard = { enabled = true },
-    explorer = { enabled = true },
+    dashboard = { enabled = false },
+    explorer = { enabled = false },
     indent = {
       enabled = true,
       -- animate scopes. Enabled by default for Neovim >= 0.10
@@ -32,7 +41,7 @@ return {
         style = 'out',
         easing = 'linear',
         duration = {
-          step = 20, -- ms per step
+          step = 20,  -- ms per step
           total = 50, -- maximum duration
         },
       },
@@ -42,10 +51,7 @@ return {
       enabled = false,
       timeout = 3000,
     },
-    picker = { enabled = true,
-      files = file_picker_config,
-      grep = grep_picker_config,
-    },
+    picker = { enabled = true },
     quickfile = { enabled = true },
     scope = { enabled = true },
     scroll = { enabled = false },
@@ -69,7 +75,7 @@ return {
     {
       '<leader><space>',
       function()
-        Snacks.picker.files()
+        Snacks.picker.files(file_picker_config)
       end,
       desc = 'Find Files',
     },
@@ -83,7 +89,7 @@ return {
     {
       '<leader>j',
       function()
-        Snacks.picker.grep()
+        Snacks.picker.grep(file_picker_config)
       end,
       desc = 'Grep',
     },

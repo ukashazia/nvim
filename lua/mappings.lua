@@ -131,3 +131,8 @@ map('n', '-', '<cmd>Oil --float<CR>', { desc = 'Open Oil' })
 --     end
 --   end,
 --   { expr = true, desc = 'Accept the current inline completion' })
+--
+--
+--
+--
+map('n', '<leader>bcl', [[<cmd>let @+ = expand('%') .. ':' .. line('.')<CR>]], { noremap = true, silent = true })
