@@ -5,7 +5,6 @@ return {
     'nvim-treesitter/nvim-treesitter',
   },
   keys = { { '<leader>rn', mode = 'n' } },
-
   config = function()
     require('refactoring').setup {
       prompt_func_return_type = {

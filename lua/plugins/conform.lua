@@ -1,8 +1,8 @@
 return {
   'stevearc/conform.nvim',
-  event = { 'BufWritePre' },
-  cmd = { 'ConformInfo' },
-  keys = { { '<leader>as', mode = 'n' } },
+  -- event = { 'BufWritePre' },
+  -- cmd = { 'ConformInfo' },
+  -- keys = { { '<leader>as', mode = 'n' } },
   -- This will provide type hinting with LuaLS
   ---@module "conform"
   ---@type conform.setupOpts
@@ -29,9 +29,6 @@ return {
             return { 'isort', 'black' }
           end
         end,
-        elixir = { 'mix_format' },
-        heex = { 'mix_format' },
-        eelixir = { 'mix_format' },
         javascript = { 'prettierd', 'prettier', stop_after_first = true },
       },
       log_level = vim.log.levels.DEBUG,

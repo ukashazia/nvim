@@ -51,7 +51,7 @@ return {
     },
     -- Constrain the cursor to the editable parts of the oil buffer
     -- Set to `false` to disable, or "name" to keep it on the file names
-    constrain_cursor = 'editable',
+    constrain_cursor = 'name',
     -- Set to true to watch the filesystem for changes and reload oil
     watch_for_changes = true,
     -- Keymaps in oil buffer. Can be any value that `vim.keymap.set` accepts OR a table of keymap
@@ -69,7 +69,6 @@ return {
       ['<C-p>'] = 'actions.preview',
       ['-'] = { 'actions.close', mode = 'n' },
       ['<C-r>'] = 'actions.refresh',
-      -- [""] = { "actions.parent", mode = "n" },
       ['_'] = { 'actions.open_cwd', mode = 'n' },
       ['`'] = { 'actions.cd', mode = 'n' },
       ['~'] = { 'actions.cd', opts = { scope = 'tab' }, mode = 'n' },
@@ -77,6 +76,8 @@ return {
       ['gx'] = 'actions.open_external',
       ['g.'] = { 'actions.toggle_hidden', mode = 'n' },
       ['g\\'] = { 'actions.toggle_trash', mode = 'n' },
+      ['<'] = { 'actions.parent', mode = 'n' },
+      ['>'] = { 'actions.select', mode = 'n' },
     },
     -- Set to false to disable all of the above keymaps
     use_default_keymaps = true,

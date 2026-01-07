@@ -29,41 +29,6 @@ map('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', { noremap = true, silent
 map('n', '<C-S-H>', '<cmd>tabprevious<CR>', { noremap = true, silent = true, desc = 'Go to previous tab' })
 map('n', '<C-S-L>', '<cmd>tabnext<CR>', { noremap = true, silent = true, desc = 'Go to next tab' })
 
--- binds for harpoon
-
--- map('n', '<leader>a', function()
---   harpoon:list():add()
--- end)
---
--- map('n', '<C-h>', function()
---   harpoon:list():select(1)
--- end)
--- map('n', '<C-t>', function()
---   harpoon:list():select(2)
--- end)
--- map('n', '<C-n>', function()
---   harpoon:list():select(3)
--- end)
--- map('n', '<C-s>', function()
---   harpoon:list():select(4)
--- end)
---
--- -- Toggle previous & next buffers stored within Harpoon list
--- map('n', '<C-S-P>', function()
---   harpoon:list():prev()
--- end)
--- map('n', '<C-S-N>', function()
---   harpoon:list():next()
--- end)
---
--- map('n', '<leader>h', function()
---   harpoon.ui:toggle_quick_menu(harpoon:list())
--- end, { desc = 'Toggle harpoon menu' })
---
--- map('n', '<leader>a', function()
---   harpoon:list():add()
--- end, { desc = 'Add current buffer to harpoon' })
-
 -- GitHub Copilot
 map('n', '<leader>cpd', ':Copilot disable<cr>', { silent = true, noremap = true, desc = 'Disable Copilot' })
 map('n', '<leader>cpe', ':Copilot enable<cr>', { silent = true, noremap = true, desc = 'Enable Copilot' })
@@ -125,14 +90,4 @@ map('t', '<C-\\>', [[<C-\><C-n>]], { noremap = true, silent = true })
 -- Oil nvim
 map('n', '-', '<cmd>Oil --float<CR>', { desc = 'Open Oil' })
 
--- map('i', '<Tab>', function()
---     if not vim.lsp.inline_completion.get() then
---       return '<Tab>'
---     end
---   end,
---   { expr = true, desc = 'Accept the current inline completion' })
---
---
---
---
 map('n', '<leader>bcl', [[<cmd>let @+ = expand('%') .. ':' .. line('.')<CR>]], { noremap = true, silent = true })
