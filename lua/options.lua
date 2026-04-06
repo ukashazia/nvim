@@ -72,4 +72,5 @@ if g.neovide then
   o.guifont = 'JetBrainsMono Nerd Font Mono:h13'
 end
 
+vim.opt.conceallevel = 2
 -- vim.lsp.inline_completion.enable()

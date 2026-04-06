@@ -1,3 +1,18 @@
+-- Pin search root to the git root of the *current buffer* (fallback: cwd). Useful when
+-- Neovim's global cwd drifts (`:cd`, Oil, etc.); `fd` would otherwise only see that subtree.
+--
+-- Picker filter gotcha (snacks matcher): if your query looks like `word:rest` (two+ letters,
+-- colon, then more text), it is treated as "match item field `word`", not as a path substring.
+-- Phoenix paths like `live/...` often trigger this when you type e.g. `live:s`. Fix: prefix
+-- the whole query with `'` for a literal substring, e.g. `'live:session` (see snacks picker docs).
+local function file_picker_cwd()
+  local root = require('snacks.git').get_root()
+  if root then
+    return root
+  end
+  return vim.fn.getcwd(0)
+end
+
 local file_picker_config = {
   hidden = true,
   ignored = true,
@@ -15,6 +30,11 @@ local file_picker_config = {
     '**/deps/**',
   },
 }
+
+---@return snacks.picker.files.Config
+local function file_picker_opts()
+  return vim.tbl_extend('force', file_picker_config, { cwd = file_picker_cwd() })
+end
 
 return {
   'folke/snacks.nvim',
@@ -37,13 +57,13 @@ return {
       --- * up_down: animate up or down based on the cursor position
       ---@field style? "out"|"up_down"|"down"|"up"
       animate = {
-        enabled = vim.fn.has 'nvim-0.10' == 1,
-        style = 'out',
-        easing = 'linear',
-        duration = {
-          step = 20,  -- ms per step
-          total = 50, -- maximum duration
-        },
+        enabled = false,
+        -- style = 'out',
+        -- easing = 'linear',
+        -- duration = {
+        --   step = 0,  -- ms per step
+        --   total = 50, -- maximum duration
+        -- },
       },
     },
     input = { enabled = true },
@@ -68,14 +88,14 @@ return {
     {
       '<leader>/',
       function()
-        Snacks.picker.smart()
+        Snacks.picker.smart({ cwd = file_picker_cwd() })
       end,
       desc = 'Smart Find Files',
     },
     {
       '<leader><space>',
       function()
-        Snacks.picker.files(file_picker_config)
+        Snacks.picker.files(file_picker_opts())
       end,
       desc = 'Find Files',
     },
@@ -89,7 +109,7 @@ return {
     {
       '<leader>j',
       function()
-        Snacks.picker.grep(file_picker_config)
+        Snacks.picker.grep(file_picker_opts())
       end,
       desc = 'Grep',
     },

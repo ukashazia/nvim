@@ -33,7 +33,6 @@ return {
         properties = {},
         types = {},
         operators = {},
-        -- miscs = {}, -- Uncomment to turn off hard-coded styles
       },
       color_overrides = {
         mocha = {
@@ -48,36 +47,44 @@ return {
           BlinkCmpMenuBorder = { bg = colors.base },
         }
       end,
-      default_integrations = true,
+      default_integrations = false,
       integrations = {
         blink_cmp = true,
-        cmp = true,
         gitsigns = true,
-        nvimtree = true,
         treesitter = true,
-        notify = true,
-
-        telescope = {
-          enabled = true,
-        },
+        telescope = { enabled = true },
         diffview = true,
-        mason = true,
-        copilot_vim = true,
-        lsp_trouble = true,
-        barbecue = {
-          dim_dirname = false, -- directory name is dimmed by default
-          bold_basename = true,
-          dim_context = true,
-          alt_background = false,
-        },
-        indent_blankline = {
-          enabled = true,
-          colored_indent_levels = true,
-        },
-        treesitter_context = true,
         which_key = true,
-        markdown = true,
+        snacks = true,
+        mini = { enabled = true },
+        cmp = false,
+        nvimtree = false,
+        notify = false,
+        mason = false,
+        copilot_vim = false,
+        lsp_trouble = false,
+        barbecue = false,
+        indent_blankline = { enabled = false },
+        treesitter_context = false,
+        alpha = false,
+        dap = false,
+        dap_ui = false,
+        dashboard = false,
+        dropbar = { enabled = false },
+        flash = false,
+        fzf = false,
+        illuminate = false,
+        lir = false,
+        navic = { enabled = false },
+        neogit = false,
+        neotree = false,
+        rainbow_delimiters = false,
+        render_markdown = false,
+        ufo = false,
+        colorful_winsep = false,
       },
+      compile_path = vim.fn.stdpath('cache') .. '/catppuccin',
     }
+    vim.cmd.CatppuccinCompile()
   end,
 }
