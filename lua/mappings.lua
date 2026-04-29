@@ -90,8 +90,7 @@ map('t', '<C-\\>', [[<C-\><C-n>]], { noremap = true, silent = true })
 -- Oil nvim
 map('n', '-', '<cmd>Oil --float<CR>', { desc = 'Open Oil' })
 
-map('n', '<leader>bcl', function()
-  local file = vim.fn.expand('%:.')
-  local line = vim.fn.line('.')
-  vim.fn.setreg('+', file .. ':' .. line)
-end, { noremap = true, silent = true })
+map('n', '<leader>bcl', [[<cmd>let @+ = expand('%') .. ':' .. line('.')<CR>]], { noremap = true, silent = true })
+
+map({ 'n', 'v' }, '<leader>ca', vim.lsp.buf.code_action)
+map('n', '<leader>rn', vim.lsp.buf.rename, { desc = 'Rename stuff' })
