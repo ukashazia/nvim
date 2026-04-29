@@ -1,3 +1,6 @@
+local test = 5
+local new = test + 5
+
 return {
   'ThePrimeagen/refactoring.nvim',
   dependencies = {

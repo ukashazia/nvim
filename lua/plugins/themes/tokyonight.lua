@@ -1,6 +1,6 @@
 return {
   'folke/tokyonight.nvim',
-  enabled = false,
+  enabled = true,
   priority = 2000,
   opts = {},
   config = function()
