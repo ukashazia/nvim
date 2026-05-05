@@ -94,3 +94,7 @@ map('n', '<leader>bcl', [[<cmd>let @+ = expand('%') .. ':' .. line('.')<CR>]], {
 
 map({ 'n', 'v' }, '<leader>ca', vim.lsp.buf.code_action)
 map('n', '<leader>rn', vim.lsp.buf.rename, { desc = 'Rename stuff' })
+
+map('n', 'zQ', '<cmd>qa!<CR>', { noremap = true, silent = true })
+map('n', 'zR', '<cmd>restart<CR>', { noremap = true, silent = true })
+map('n', 'zX', '<cmd>xall<CR>', { noremap = true, silent = true })
