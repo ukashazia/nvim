@@ -15,7 +15,8 @@ return {
         lsp_format = 'fallback',
       },
       formatters_by_ft = {
-
+        typescript = { "prettier" },
+        typescriptreact = { "prettier" },
         lua = { 'stylua' },
         -- Conform will run multiple formatters sequentially
         go = { 'goimports', 'gofmt' },
