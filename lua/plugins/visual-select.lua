@@ -1,5 +1,5 @@
 return {
-  dir = '~/.config/nvim/lua/plugins/custom/visual-select.nvim',
+  dir = vim.fs.joinpath(vim.fn.stdpath('config'), 'lua', 'plugins', 'custom', 'visual-select.nvim'),
   opts = {
     -- The highlight group to apply to matched text
     --

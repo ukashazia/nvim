@@ -11,7 +11,10 @@ opt.scrolloff = 8
 
 opt.swapfile = false
 opt.backup = false
-opt.undodir = os.getenv 'HOME' .. '/.vim/undodir'
+
+local undo_dir = vim.fs.joinpath(vim.fn.stdpath('data'), 'undodir')
+vim.fn.mkdir(undo_dir, 'p')
+opt.undodir = undo_dir
 opt.undofile = true
 
 -- disable some default providers
